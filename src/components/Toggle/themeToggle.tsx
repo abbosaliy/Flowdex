@@ -1,40 +1,25 @@
-import { useEffect, useState } from 'react';
-import { BsBrightnessHigh } from 'react-icons/bs';
-import { PiMoonDuotone } from 'react-icons/pi';
+import { BsBrightnessHigh } from "react-icons/bs";
+import { PiMoonDuotone } from "react-icons/pi";
+import { useTheme } from "../../hooks/use-theme";
 
-function ThemaToggle() {
-  const [toggle, setToggle] = useState(false);
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const savedThema = localStorage.getItem('thema');
-    if (savedThema === 'dark') {
-      document.documentElement.classList.add('dark');
-      setToggle(true);
-    } else {
-      document.documentElement.classList.remove('dark');
-      setToggle(false);
-    }
-  }, []);
+  const isDark = theme === "dark";
 
   function handleToggle() {
-    setToggle(!toggle);
-    if (!toggle) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('thema', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('thema', 'light');
-    }
+    setTheme(isDark ? "light" : "dark");
   }
 
   return (
     <button
-      className="flex items-center gap-2 text-xl transition hover:scale-110 hover:cursor-pointer"
       onClick={handleToggle}
+      className="flex items-center gap-2 rounded-full border p-2 text-xl transition hover:cursor-pointer hover:bg-black/10 dark:hover:bg-gray-700"
+      aria-label="Toggle theme"
     >
-      {toggle ? <PiMoonDuotone /> : <BsBrightnessHigh />}
+      {isDark ? <PiMoonDuotone /> : <BsBrightnessHigh />}
     </button>
   );
 }
 
-export default ThemaToggle;
+export default ThemeToggle;

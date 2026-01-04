@@ -1,29 +1,21 @@
-import { useState } from 'react';
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import Register from './register';
-import supabase from '../../lib/supabaseClient';
-import { toast } from 'sonner';
-import { useNavigate } from 'react-router';
+import { useState } from "react";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import Register from "./register";
+import supabase from "../../lib/supabaseClient";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin() {
     if (!email || !password) {
-      toast.error('Bitte Email und Passwort eingeben');
+      toast.error("Bitte Email und Passwort eingeben");
       return;
     }
 
@@ -33,7 +25,7 @@ function Login() {
     });
 
     if (error) {
-      toast.error('Fehler beim einloggen');
+      toast.error("Fehler beim einloggen");
       console.log(error);
       return;
     }
@@ -41,38 +33,32 @@ function Login() {
     const userId = data.user?.id;
     console.log(userId);
 
-    const { data: profile, error: profileError } = await supabase
-      .from('profile')
-      .select('position')
-      .eq('id', userId)
-      .single();
+    const { data: profile, error: profileError } = await supabase.from("profile").select("position").eq("id", userId).single();
 
     if (profileError || !profile) {
-      toast.error('Profil nicht gefunden');
+      toast.error("Profil nicht gefunden");
       return;
     }
 
-    if (profile.position === 'manager') {
-      navigate('/manager');
-    } else if (profile.position === 'developer') {
-      navigate('/user');
+    if (profile.position === "manager") {
+      navigate("/manager");
+    } else if (profile.position === "developer") {
+      navigate("/user");
     } else {
-      toast.error('Keine Position gefunden');
+      toast.error("Keine Position gefunden");
     }
   }
 
   return (
-    <div className="h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
+    <div className="flex h-screen items-center justify-center bg-white dark:bg-gray-900">
       {!open ? (
-        <Card className="w-100   dark:bg-gray-800 ">
+        <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
             <CardTitle> Anmelden Sie ihre account</CardTitle>
-            <CardDescription>
-              Lorem ipsum dolor sit amet consectetur
-            </CardDescription>
+            <CardDescription>Lorem ipsum dolor sit amet consectetur</CardDescription>
             <CardAction>
               <Button
-                variant={'link'}
+                variant={"link"}
                 onClick={() => setOpen(true)}
                 className="cursor-pointer"
               >
