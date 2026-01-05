@@ -10,46 +10,42 @@ function UserDropdown() {
       <div className="relative">
         <button
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-2  p-1 cursor-pointer"
+          className="flex cursor-pointer items-center gap-2 p-1"
         >
           <img
             src="/images/user.jpg"
             alt="user"
             className="h-12 w-12 rounded-full object-cover"
           />
-          <FiChevronDown
-            className={`h-5 w-5 transition-transform ${
-              open ? "rotate-180" : ""
-            }`}
-          />
+          <FiChevronDown className={`h-5 w-5 transition-transform ${open ? "rotate-180" : ""}`} />
         </button>
-        
+
         {open && (
-          <div className="absolute flex flex-col gap-4  p-4 right-0 mt-2 w-55 h-50 rounded-md bg-white shadow-lg dark:bg-slate-800 z-50">
+          <div className="absolute right-0 z-50 mt-2 flex h-50 w-55 flex-col gap-4 rounded-md bg-white p-4 shadow-lg dark:bg-slate-800">
             <NavLink
               to="profile"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 px-4 py-2 rounded-md text-md  hover:bg-black/10 dark:hover:bg-slate-700"
+              className="text-md flex items-center gap-2 rounded-md px-4 py-2 hover:bg-black/10 dark:hover:bg-slate-700"
             >
               <FiUser />
               Profil
             </NavLink>
-  
+
             <NavLink
               to="settings"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 px-4 py-2 rounded-md  text-md hover:bg-black/10 dark:hover:bg-slate-700"
+              className="text-md flex items-center gap-2 rounded-md px-4 py-2 hover:bg-black/10 dark:hover:bg-slate-700"
             >
               <IoSettingsOutline />
-            Einstellung
+              Einstellung
             </NavLink>
-  
+
             <button
               onClick={() => setOpen(false)}
-              className="flex w-full items-center cursor-pointer gap-2 px-4 py-2 rounded-md text-mdhover:bg-red-50    dark:hover:bg-slate-700"
+              className="text-mdhover:bg-red-50 flex w-full cursor-pointer items-center gap-2 rounded-md px-4 py-2 dark:hover:bg-slate-700"
             >
               <FiLogOut />
-             Ausloggen
+              Ausloggen
             </button>
           </div>
         )}

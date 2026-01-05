@@ -11,22 +11,22 @@ function Header({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => 
         <div className="flex items-center gap-4">
           <div className="sm-gap-4 flex items-center gap-2 lg:hidden">
             <Button
-            variant={'outline'}
+              variant={"outline"}
               onClick={() => setOpen(!open)}
               className="flex items-center gap-2 rounded-sm border p-2 text-xl transition hover:cursor-pointer hover:bg-black/10 dark:hover:bg-gray-700"
             >
-             <RxHamburgerMenu />
+              <RxHamburgerMenu />
             </Button>
           </div>
         </div>
 
         <div className="flex items-center gap-5">
-            <ThemaToggle/>
+          <ThemaToggle />
           <div className="hidden flex-col items-center md:flex">
             <p className="font-medium">Abbosbek Anvarjonov</p>
             <span className="text-sm text-gray-500 dark:text-gray-400">Developer</span>
           </div>
-         <UserDropdown/>
+          <UserDropdown />
         </div>
       </div>
     </header>

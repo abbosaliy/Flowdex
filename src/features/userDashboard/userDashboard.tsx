@@ -12,11 +12,11 @@ function User() {
           open={open}
           setOpen={setOpen}
         />
-        
-        <div  className="relative z-10 flex flex-1 flex-col overflow-x-hidden overflow-y-auto transition-all" >
+        <div className="relative z-10 flex flex-1 flex-col overflow-x-hidden overflow-y-auto transition-all">
           <Header
-          open={open}
-            setOpen={setOpen}></Header>
+            open={open}
+            setOpen={setOpen}
+          ></Header>
           <main>
             <Outlet />
           </main>
