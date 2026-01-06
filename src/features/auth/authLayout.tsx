@@ -42,7 +42,7 @@ function Login() {
 
     if (profile.position === "manager") {
       navigate("/manager");
-    } else if (profile.position === "developer") {
+    } else if (profile.position === "owner") {
       navigate("/user");
     } else {
       toast.error("Keine Position gefunden");

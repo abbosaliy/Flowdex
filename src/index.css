@@ -1,8 +1,15 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
+  --color-brand: rgb(60 80 224);
+  --color-brand-hover: rgb(50 68 200);
+  --color-danger: rgb(220 38 38);
+  --color-danger-hover: rgb(185 28 28);
+  --color-success: rgb(16 185 129);
+  --color-success-hover: rgb(5 150 105);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -122,8 +129,17 @@
 }
 
 @layer base {
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
-        'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-    }
+  body {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif;
   }
+}

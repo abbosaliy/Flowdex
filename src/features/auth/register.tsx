@@ -1,41 +1,27 @@
-import { useState } from 'react';
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import Login from './authLayout';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../../components/ui/select';
+import { useState } from "react";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import Login from "./authLayout";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 
-import { useNavigate } from 'react-router';
-import supabase from '../../lib/supabaseClient';
-import { toast } from 'sonner';
+import { useNavigate } from "react-router";
+import supabase from "../../lib/supabaseClient";
+import { toast } from "sonner";
 
 function Register() {
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [position, setPosition] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [position, setPosition] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
   async function handleRegister() {
     if (!first_name || !last_name || !position || !email || !password) {
-      toast.error('Bitte alle pflichtfelder ausfüllen');
+      toast.error("Bitte alle pflichtfelder ausfüllen");
       return;
     }
 
@@ -45,15 +31,15 @@ function Register() {
     });
 
     if (error) {
-      alert('Fehler aufgetreten');
-      toast.error('Fehler beim Registrieren');
+      alert("Fehler aufgetreten");
+      toast.error("Fehler beim Registrieren");
       return;
     }
 
     const userId = data.user?.id;
     console.log(userId);
 
-    const { error: profileError } = await supabase.from('profile').insert([
+    const { error: profileError } = await supabase.from("profile").insert([
       {
         id: userId,
         first_name,
@@ -64,31 +50,29 @@ function Register() {
     ]);
 
     if (profileError) {
-      toast.error('Fehler beim Registrieren');
+      toast.error("Fehler beim Registrieren");
       console.log(profileError);
       return;
     }
 
-    if (position === 'manager') {
-      navigate('/manager');
-    } else if (position === 'developer') {
-      navigate('/user');
+    if (position === "manager") {
+      navigate("/manager");
+    } else if (position === "owner") {
+      navigate("/user");
     } else {
       return;
     }
   }
   return (
-    <div className="h-screen bg-white dark:bg-gray-900 flex items-center justify-center py-4 px-4">
+    <div className="flex h-screen items-center justify-center bg-white px-4 py-4 dark:bg-gray-900">
       {!open ? (
         <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
             <CardTitle>Registrieren Sie neue account</CardTitle>
-            <CardDescription>
-              Lorem ipsum dolor sit amet consectetur
-            </CardDescription>
+            <CardDescription>Lorem ipsum dolor sit amet consectetur</CardDescription>
             <CardAction>
               <Button
-                variant={'link'}
+                variant={"link"}
                 onClick={() => setOpen(true)}
                 className="cursor-pointer"
               >
@@ -126,8 +110,8 @@ function Register() {
                       <SelectValue placeholder="Wählen Sie Ihre Position" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="manager">Manager</SelectItem>
-                      <SelectItem value="developer">Developer</SelectItem>
+                      <SelectItem value="manager">Manager/In</SelectItem>
+                      <SelectItem value="owner">Projekinhaber/In</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

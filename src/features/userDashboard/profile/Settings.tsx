@@ -1,4 +1,6 @@
+import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
+import { Textarea } from "../../../components/ui/textarea";
 
 function Settings() {
   return (
@@ -16,23 +18,23 @@ function Settings() {
           <div className="flex flex-col gap-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div className="flex flex-col gap-2">
-                <p className="text-sm dark:text-gray-300">First Name</p>
-                <Input placeholder="First name" />
+                <p className="text-sm dark:text-gray-300">Vorname</p>
+                <Input placeholder="Vorname" />
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-sm dark:text-gray-300">Last Name</p>
-                <Input placeholder="Last name" />
+                <p className="text-sm dark:text-gray-300">Nachname</p>
+                <Input placeholder="Nachname" />
               </div>
               <div className="flex flex-col gap-2">
                 <p className="text-sm dark:text-gray-300">Email</p>
                 <Input
                   type="email"
-                  placeholder="Email address"
+                  placeholder="Email addres"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <p className="text-sm dark:text-gray-300">Role</p>
-                <Input placeholder="Frontend Developer" />
+                <p className="text-sm dark:text-gray-300">Position</p>
+                <Input placeholder="Position" />
               </div>
               <div className="flex flex-col gap-2">
                 <p className="text-sm dark:text-gray-300">Github Url</p>
@@ -44,29 +46,18 @@ function Settings() {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <p className="text-sm dark:text-gray-300">About</p>
-              <textarea
-                rows={4}
-                placeholder="Write something about yourself..."
-                className="rounded-md border border-slate-600 bg-transparent p-3 text-sm text-white outline-none focus:border-blue-500"
-              />
+              <p className="text-sm dark:text-gray-300">Über mich</p>
+              <Textarea placeholder="Über dich"></Textarea>
             </div>
-
-            {/* Buttons */}
             <div className="flex justify-end gap-3 pt-4">
-              <button
-                type="button"
-                className="rounded-md border border-slate-600 px-4 py-2 text-sm hover:bg-slate-700"
-              >
-                Cancel
-              </button>
+              <Button className="bg-danger hover:bg-danger-hover cursor-pointer text-white">Abrechen</Button>
 
-              <button
+              <Button
                 type="submit"
-                className="rounded-md bg-blue-600 px-5 py-2 text-sm font-medium hover:bg-blue-700"
+                className="bg-success hover:bg-success-hover cursor-pointer text-white"
               >
-                Save Changes
-              </button>
+                Speichern
+              </Button>
             </div>
           </div>
         </div>
