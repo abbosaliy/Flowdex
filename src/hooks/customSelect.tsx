@@ -5,16 +5,16 @@ import type { Database } from "../types/database.types";
 
 type Profile = Database["public"]["Tables"]["profile"]["Row"];
 type Props = {
-  owner: string;
+  value: string;
   onselect: (id: string) => void;
 };
 
-function CustomSelect({ owner, onselect }: Props) {
+function CustomSelect({ value, onselect }: Props) {
   const [profiles, setProfiles] = useState<Profile[]>([]);
 
   useEffect(() => {
     async function fetschUser() {
-      const { data, error } = await supabase.from("profile").select("*").eq("position", "owner");
+      const { data, error } = await supabase.from("profile").select("*").eq("position", "manager");
 
       if (error) {
         console.log(error);
@@ -30,7 +30,7 @@ function CustomSelect({ owner, onselect }: Props) {
 
   return (
     <Select
-      value={owner}
+      value={value}
       onValueChange={(value) => onselect(value)}
     >
       <SelectTrigger className="w-full">

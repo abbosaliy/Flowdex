@@ -21,7 +21,7 @@ function Register() {
 
   async function handleRegister() {
     if (!first_name || !last_name || !position || !email || !password) {
-      toast.error("Bitte alle pflichtfelder ausfüllen");
+      toast.error("Bitte geben Sie alle erforderlichen Angaben ein.");
       return;
     }
 
@@ -31,8 +31,7 @@ function Register() {
     });
 
     if (error) {
-      alert("Fehler aufgetreten");
-      toast.error("Fehler beim Registrieren");
+      toast.error("Etwas ist schiefgelaufen.");
       return;
     }
 
@@ -50,14 +49,14 @@ function Register() {
     ]);
 
     if (profileError) {
-      toast.error("Fehler beim Registrieren");
+      toast.error("Etwas ist schiefgelaufen.");
       console.log(profileError);
       return;
     }
 
     if (position === "manager") {
       navigate("/manager");
-    } else if (position === "owner") {
+    } else if (position === "projekinhaber") {
       navigate("/user");
     } else {
       return;
@@ -111,7 +110,7 @@ function Register() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="manager">Manager/In</SelectItem>
-                      <SelectItem value="owner">Projekinhaber/In</SelectItem>
+                      <SelectItem value="projekinhaber">Projekinhaber/In</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

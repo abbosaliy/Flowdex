@@ -15,7 +15,7 @@ function Login() {
 
   async function handleLogin() {
     if (!email || !password) {
-      toast.error("Bitte Email und Passwort eingeben");
+      toast.error("Bitte geben Sie alle erforderlichen Angaben ein.");
       return;
     }
 
@@ -42,7 +42,7 @@ function Login() {
 
     if (profile.position === "manager") {
       navigate("/manager");
-    } else if (profile.position === "owner") {
+    } else if (profile.position === "projekinhaber") {
       navigate("/user");
     } else {
       toast.error("Keine Position gefunden");
