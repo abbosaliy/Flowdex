@@ -12,10 +12,10 @@ import User from "./features/userDashboard/userDashboard";
 import { Toaster } from "./components/ui/sonner";
 import { ThemeProvider } from "./components/contexts/theme-context";
 import Projekt from "./features/userDashboard/projekt/CreateProjects";
-import Projekts from "./features/userDashboard/projekt/Projects";
+import Projekts from "./features/userDashboard/projekt/ProjectsListe";
 import Profile from "./features/userDashboard/profile/Profile";
 import Settings from "./features/userDashboard/profile/Settings";
-
+import ProjectsDetails from "./features/userDashboard/projekt/ProjectsDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,21 +42,25 @@ function App() {
           children: [
             { index: true, element: <Projekt /> },
             {
-                path: "projekt-erstellen",
-                element: <Projekt />,
+              path: "projekt-erstellen",
+              element: <Projekt />,
             },
             {
-                path: "projekts",
-                element: <Projekts />,
+              path: "projekts",
+              element: <Projekts />,
             },
             {
-                path: "profile",
-                element: <Profile />,
+              path: "projekts/:id",
+              element: <ProjectsDetails />,
             },
             {
-                path: "settings",
-                element: <Settings />,
-            }
+              path: "profile",
+              element: <Profile />,
+            },
+            {
+              path: "settings",
+              element: <Settings />,
+            },
           ],
         },
       ],
