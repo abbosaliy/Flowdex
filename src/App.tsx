@@ -11,11 +11,12 @@ import Meneger from "./features/manager/manager";
 import User from "./features/userDashboard/userDashboard";
 import { Toaster } from "./components/ui/sonner";
 import { ThemeProvider } from "./components/contexts/theme-context";
-import Projekt from "./features/userDashboard/projekt/CreateProjects";
-import Projekts from "./features/userDashboard/projekt/ProjectsListe";
+import Projekt from "./features/userDashboard/projekte/CreateProjects";
 import Profile from "./features/userDashboard/profile/Profile";
 import Settings from "./features/userDashboard/profile/Settings";
-import ProjectsDetails from "./features/userDashboard/projekt/ProjectsDetails";
+import ManagerProjects from "./features/manager/projekte/managerProjects";
+import OwnerProjects from "./features/userDashboard/projekte/OwnerProjects";
+import ProjectsDetails from "./components/ui/projectDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +36,14 @@ function App() {
         {
           path: "manager",
           element: <Meneger />,
+          children: [
+            { index: true, element: <ManagerProjects /> },
+            { path: "projekts", element: <ManagerProjects /> },
+            {
+              path: "projekts/:projectId",
+              element: <ProjectsDetails />,
+            },
+          ],
         },
         {
           path: "user",
@@ -47,10 +56,10 @@ function App() {
             },
             {
               path: "projekts",
-              element: <Projekts />,
+              element: <OwnerProjects />,
             },
             {
-              path: "projekts/:id",
+              path: "projekts/:projectId",
               element: <ProjectsDetails />,
             },
             {
