@@ -43,7 +43,7 @@ function ProfileDropdown({ basePath }: ProfileDropdownProps) {
           </NavLink>
 
           <NavLink
-            to={`${basePath}/settings`}
+            to={`${basePath}/einstellungen`}
             onClick={() => setOpen(false)}
             className="flex items-center gap-2 rounded-md px-4 py-2 hover:bg-black/10 dark:hover:bg-slate-700"
           >

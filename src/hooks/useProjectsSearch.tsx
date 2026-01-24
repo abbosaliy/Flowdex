@@ -65,7 +65,7 @@ function ProjectsSearch({ role, basePath }: ProjectsSearchProps) {
               <Link
                 key={project.id}
                 to={`${basePath}/${project.id}`}
-                className="rounded-lg border bg-white p-3 font-semibold dark:bg-slate-800"
+                className="rounded-lg border bg-white p-3 font-semibold hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
               >
                 {project.project_name}
               </Link>

@@ -64,7 +64,7 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
           </NavLink>
 
           <NavLink
-            to="settings"
+            to="einstellungen"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`

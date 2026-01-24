@@ -12,11 +12,12 @@ import User from "./features/userDashboard/userDashboard";
 import { Toaster } from "./components/ui/sonner";
 import { ThemeProvider } from "./components/contexts/theme-context";
 import Projekt from "./features/userDashboard/projekte/CreateProjects";
-import Profile from "./features/userDashboard/profile/Profile";
-import Settings from "./features/userDashboard/profile/Settings";
 import ManagerProjects from "./features/manager/projekte/managerProjects";
 import OwnerProjects from "./features/userDashboard/projekte/OwnerProjects";
 import ProjectsDetails from "./components/ui/projectDetails";
+import Profile from "./components/ui/profile";
+import Settings from "./components/ui/settings";
+import ProjectsEdit from "./components/ui/projectsEdit";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +44,14 @@ function App() {
               path: "projekts/:projectId",
               element: <ProjectsDetails />,
             },
+            {
+              path: "profile",
+              element: <Profile />,
+            },
+            {
+              path: "einstellungen",
+              element: <Settings />,
+            },
           ],
         },
         {
@@ -63,11 +72,15 @@ function App() {
               element: <ProjectsDetails />,
             },
             {
+              path: "projekts/:projectId/edit",
+              element: <ProjectsEdit />,
+            },
+            {
               path: "profile",
               element: <Profile />,
             },
             {
-              path: "settings",
+              path: "einstellungen",
               element: <Settings />,
             },
           ],

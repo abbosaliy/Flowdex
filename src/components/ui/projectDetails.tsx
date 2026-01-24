@@ -6,6 +6,7 @@ import { PuffLoader } from "react-spinners";
 import { GoArrowLeft } from "react-icons/go";
 import { Card } from "./card";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { TbEdit } from "react-icons/tb";
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
 
 function ProjectsDetails() {
@@ -54,7 +55,7 @@ function ProjectsDetails() {
   }
 
   return (
-    <div className="m-10 flex max-w-full flex-col gap-5">
+    <div className="m-10 flex max-w-7xl flex-col gap-5">
       <Link
         to={backPath}
         className="text-brand hover:text-brand/75 mb-4 flex items-center gap-2"
@@ -63,6 +64,16 @@ function ProjectsDetails() {
       </Link>
 
       <Card className="p-6 dark:bg-slate-800">
+        {!isManager && (
+          <div className="flex justify-end">
+            <Link
+              to={`/user/projekts/${project?.id}/edit`}
+              className="bg-brand hover:bg-brand-hover rounded p-1 text-white"
+            >
+              <TbEdit size={25}></TbEdit>
+            </Link>
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2">
           <div className="text-sm text-gray-500 dark:text-gray-400">Projekt Name:</div>
           <div className="text-base font-semibold">{project?.project_name}</div>

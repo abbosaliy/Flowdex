@@ -18,7 +18,7 @@ function OwnerProjects() {
     );
   }
   return (
-    <div>
+    <div className="max-w-8xl">
       <div className="m-10 flex items-center justify-between">
         <h2 className="text-xl font-semibold">Projekte</h2>
         <ProjectsSearch
