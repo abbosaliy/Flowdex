@@ -1,6 +1,7 @@
 import { GoArrowLeft } from "react-icons/go";
-import { FiUser } from "react-icons/fi";
+import { FiRefreshCcw, FiUser, FiXCircle } from "react-icons/fi";
 import { GrProjects } from "react-icons/gr";
+import { FcAcceptDatabase } from "react-icons/fc";
 import { IoSettingsOutline, IoCreateOutline } from "react-icons/io5";
 import { NavLink } from "react-router";
 
@@ -52,6 +53,41 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
             Projekte
           </NavLink>
 
+          <NavLink
+            to="projekts"
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
+            }
+          >
+            <FiRefreshCcw className="h-5 w-5" />
+            Bearbetungs Projekte
+          </NavLink>
+
+          <NavLink
+            to="projekts/completed"
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
+            }
+          >
+            <FcAcceptDatabase className="h-5 w-5" />
+            Angenommene Projekte
+          </NavLink>
+          <NavLink
+            to="projekts/rejected"
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
+            }
+          >
+            <FiXCircle className="h-5 w-5" />
+            Abgelehnte Projekte
+          </NavLink>
+        </ul>
+      </div>
+      <div className="mt-auto ml-2">
+        <ul className="-ml-3 flex flex-col gap-4">
           <NavLink
             to="profile"
             onClick={() => setOpen(false)}

@@ -61,7 +61,11 @@ function ProjectsEdit() {
   if (loading) {
     return (
       <div className="flex min-h-[calc(100vh-100px)] items-center justify-center">
-        <PuffLoader size={100} />
+        <PuffLoader
+          size={100}
+          color="rgb(60 80 224)"
+          loading={loading}
+        />
       </div>
     );
   }

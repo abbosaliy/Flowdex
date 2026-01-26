@@ -5,6 +5,7 @@ import ProjectsSearch from "../../../hooks/useProjectsSearch";
 
 function OwnerProjects() {
   const { projects, loading } = UseProjects({ role: "owner" });
+  const hasProjects = projects && projects.length > 0;
 
   if (loading) {
     return (
@@ -21,16 +22,23 @@ function OwnerProjects() {
     <div className="max-w-8xl">
       <div className="m-10 flex items-center justify-between">
         <h2 className="text-xl font-semibold">Projekte</h2>
-        <ProjectsSearch
-          role="user"
+        {!hasProjects && (
+          <ProjectsSearch
+            role="user"
+            basePath="/user/projekts"
+          />
+        )}
+      </div>
+      {hasProjects ? (
+        <ProjectListe
+          projects={projects}
           basePath="/user/projekts"
         />
-      </div>
-
-      <ProjectListe
-        projects={projects}
-        basePath="/user/projekts"
-      />
+      ) : (
+        <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6">
+          <p className="text-center text-lg text-gray-500">Du hast noch keine Projekte - erstelle jetzt dein erstes Projekt.</p>
+        </div>
+      )}
     </div>
   );
 }
