@@ -29,7 +29,7 @@ function Home() {
           <div className="bg-liniear-to-tr absolute inset-0 rounded-3xl from-blue-500/20 via-purple-500/20 to-cyan-400/20 blur-2xl" />
 
           <img
-            src="/images/hero.png"
+            src={`${import.meta.env.BASE_URL}images/hero.png`}
             alt="Flowdex dashboard preview"
             className="relative rounded-3xl shadow-2xl"
           />

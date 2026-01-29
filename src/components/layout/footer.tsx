@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900">
-      <div className="relative mx-auto max-w-7xl   sm:px-6 lg:px-8 lg:pt-15">
+      <div className="relative mx-auto max-w-7xl sm:px-6 lg:px-8 lg:pt-15">
         <div className="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8">
           <a
             className="inline-block rounded-full bg-blue-500 p-2 text-white shadow-sm transition hover:bg-blue-600 sm:p-3 lg:p-4 dark:bg-gray-700 dark:text-blue-500 dark:hover:bg-gray-600"
@@ -22,20 +22,19 @@ function Footer() {
           </a>
         </div>
 
-        <div className=" lg:flex lg:items-end lg:justify-between">
+        <div className="lg:flex lg:items-end lg:justify-between">
           <div>
-            <div className="-ml-9 flex justify-center items-center text-blue-500 lg:justify-start dark:text-blue-400">
+            <div className="-ml-9 flex items-center justify-center text-blue-500 lg:justify-start dark:text-blue-400">
               <img
-                className="w-30 h-auto"
-                src="/images/logo.png"
+                className="h-auto w-30"
+                src={`${import.meta.env.BASE_URL}images/logo.png`}
                 alt=""
               />
               <span className="-ml-5">Flowdex</span>
             </div>
 
             <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 lg:text-left dark:text-gray-400">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-              consequuntur amet culpa cum itaque neque.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt consequuntur amet culpa cum itaque neque.
             </p>
           </div>
 
@@ -78,9 +77,7 @@ function Footer() {
           </ul>
         </div>
 
-        <p className="mt-12 text-center text-sm text-gray-500 lg:text-right dark:text-gray-400">
-          Copyright © 2026. All rights reserved.
-        </p>
+        <p className="mt-12 text-center text-sm text-gray-500 lg:text-right dark:text-gray-400">Copyright © 2026. All rights reserved.</p>
       </div>
     </footer>
   );

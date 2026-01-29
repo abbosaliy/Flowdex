@@ -1,22 +1,16 @@
-import { NavLink } from 'react-router';
-import ThemaToggle from '../../Toggle/themeToggle';
-import MobileNavi from './mobileNavi';
+import { NavLink } from "react-router";
+import ThemaToggle from "../../Toggle/themeToggle";
+import MobileNavi from "./mobileNavi";
 
-function Navigation({
-  menuOpen,
-  setMenuOpen,
-}: {
-  menuOpen: boolean;
-  setMenuOpen: (open: boolean) => void;
-}) {
+function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (open: boolean) => void }) {
   return (
     <header className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="-ml-8 sm:-ml-10 flex-1 md:flex md:items-center md:gap-12">
+          <div className="-ml-8 flex-1 sm:-ml-10 md:flex md:items-center md:gap-12">
             <div className="flex items-center">
               <img
-                src="/images/logo.png"
+                src={`${import.meta.env.BASE_URL}images/logo.png`}
                 alt="Logo"
                 className="h-20 w-auto"
               />
@@ -32,7 +26,7 @@ function Navigation({
               <ul className="flex items-center gap-6 text-sm">
                 <li>
                   <NavLink
-                    to={'/'}
+                    to={"/"}
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   >
                     Home
@@ -40,7 +34,7 @@ function Navigation({
                 </li>
                 <li>
                   <NavLink
-                    to={'about'}
+                    to={"about"}
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   >
                     Über uns
@@ -48,7 +42,7 @@ function Navigation({
                 </li>
                 <li>
                   <NavLink
-                    to={'history'}
+                    to={"history"}
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   >
                     History
@@ -82,8 +76,8 @@ function Navigation({
                 <ThemaToggle />
                 <div className="hidden lg:block">
                   <NavLink
-                    to={'auth'}
-                    className="px-3 py-2 rounded-sm bg-blue-500 text-white hover:bg-blue-600  focus:ring-blue-300 dark:focus:ring-blue-800 cursor-pointer"
+                    to={"auth"}
+                    className="cursor-pointer rounded-sm bg-blue-500 px-3 py-2 text-white hover:bg-blue-600 focus:ring-blue-300 dark:focus:ring-blue-800"
                   >
                     Anmelden
                   </NavLink>
@@ -93,7 +87,7 @@ function Navigation({
               <div className="block lg:hidden">
                 <button
                   onClick={() => setMenuOpen(true)}
-                  className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cursor-pointer"
+                  className="cursor-pointer rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

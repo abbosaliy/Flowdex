@@ -15,7 +15,6 @@ function ManagerProjects() {
           color="rgb(60 80 224)"
           loading={loading}
         />
-        )
       </div>
     );
   }
