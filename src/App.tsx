@@ -20,74 +20,79 @@ import Settings from "./components/ui/settings";
 import ProjectsEdit from "./components/ui/projectsEdit";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Root />,
+        children: [
+          {
+            element: <AppLayout />,
+            children: [
+              { index: true, element: <Home /> },
+              { path: "about", element: <About /> },
+              { path: "history", element: <History /> },
+              { path: "auth", element: <AuthLayout /> },
+            ],
+          },
+          {
+            path: "manager",
+            element: <Meneger />,
+            children: [
+              { index: true, element: <ManagerProjects /> },
+              { path: "projekts", element: <ManagerProjects /> },
+              {
+                path: "projekts/:projectId",
+                element: <ProjectsDetails />,
+              },
+              {
+                path: "profile",
+                element: <Profile />,
+              },
+              {
+                path: "einstellungen",
+                element: <Settings />,
+              },
+            ],
+          },
+          {
+            path: "user",
+            element: <User />,
+            children: [
+              { index: true, element: <Projekt /> },
+              {
+                path: "projekt-erstellen",
+                element: <Projekt />,
+              },
+              {
+                path: "projekts",
+                element: <OwnerProjects />,
+              },
+              {
+                path: "projekts/:projectId",
+                element: <ProjectsDetails />,
+              },
+              {
+                path: "projekts/:projectId/edit",
+                element: <ProjectsEdit />,
+              },
+              {
+                path: "profile",
+                element: <Profile />,
+              },
+              {
+                path: "einstellungen",
+                element: <Settings />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
     {
-      path: "/",
-      element: <Root />,
-      children: [
-        {
-          element: <AppLayout />,
-          children: [
-            { index: true, element: <Home /> },
-            { path: "about", element: <About /> },
-            { path: "history", element: <History /> },
-            { path: "auth", element: <AuthLayout /> },
-          ],
-        },
-        {
-          path: "manager",
-          element: <Meneger />,
-          children: [
-            { index: true, element: <ManagerProjects /> },
-            { path: "projekts", element: <ManagerProjects /> },
-            {
-              path: "projekts/:projectId",
-              element: <ProjectsDetails />,
-            },
-            {
-              path: "profile",
-              element: <Profile />,
-            },
-            {
-              path: "einstellungen",
-              element: <Settings />,
-            },
-          ],
-        },
-        {
-          path: "user",
-          element: <User />,
-          children: [
-            { index: true, element: <Projekt /> },
-            {
-              path: "projekt-erstellen",
-              element: <Projekt />,
-            },
-            {
-              path: "projekts",
-              element: <OwnerProjects />,
-            },
-            {
-              path: "projekts/:projectId",
-              element: <ProjectsDetails />,
-            },
-            {
-              path: "projekts/:projectId/edit",
-              element: <ProjectsEdit />,
-            },
-            {
-              path: "profile",
-              element: <Profile />,
-            },
-            {
-              path: "einstellungen",
-              element: <Settings />,
-            },
-          ],
-        },
-      ],
+      basename: "/Flowdex",
     },
-  ]);
+  );
   return (
     <ThemeProvider storageKey="theme">
       <RouterProvider router={router} />
