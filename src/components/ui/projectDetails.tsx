@@ -7,6 +7,7 @@ import { GoArrowLeft } from "react-icons/go";
 import { Card } from "./card";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
+import { Button } from "./button";
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
 
 function ProjectsDetails() {
@@ -18,6 +19,7 @@ function ProjectsDetails() {
 
   const [project, setProject] = useState<ProjectsRow | null>(null);
   const [loading, setLoading] = useState(true);
+  const [pendingStatus, setPendingStatus] = useState<"approved" | "rejected" | "revision" | null>(null);
 
   useEffect(() => {
     if (!projectId) return;
@@ -41,6 +43,21 @@ function ProjectsDetails() {
 
     fetchProject();
   }, [projectId]);
+
+  async function updateStatus(status: "approved" | "rejected" | "revision") {
+    setPendingStatus(status);
+
+    const { error } = await supabase.from("project").update({ status }).eq("id", Number(projectId));
+
+    if (error) {
+      toast.error("Status konnte nicht aktualisiert werden");
+      setPendingStatus(null);
+      console.error(error);
+      return;
+    }
+
+    toast.success("Status erfolgreich aktualisiert");
+  }
 
   if (loading) {
     return (
@@ -87,6 +104,34 @@ function ProjectsDetails() {
           <div className="text-sm text-gray-500 dark:text-gray-400">Vorteil:</div>
           <div>{project?.benefits}</div>
         </div>
+        {isManager && (project?.status === "submitted" || pendingStatus !== null) && (
+          <div>
+            <Button
+              variant={pendingStatus === "revision" ? "default" : "outline"}
+              className={pendingStatus === "revision" ? "bg-yellow-500 text-white" : ""}
+              onClick={() => updateStatus("revision")}
+              disabled={!!pendingStatus}
+            >
+              Zur Bearbetung
+            </Button>
+            <Button
+              variant={pendingStatus === "rejected" ? "default" : "outline"}
+              className={pendingStatus === "rejected" ? "bg-red-500 text-white" : ""}
+              onClick={() => updateStatus("rejected")}
+              disabled={!!pendingStatus}
+            >
+              Ablehnen
+            </Button>
+            <Button
+              variant={pendingStatus === "approved" ? "default" : "outline"}
+              className={pendingStatus === "approved" ? "bg-green-500 text-white" : ""}
+              onClick={() => updateStatus("approved")}
+              disabled={!!pendingStatus}
+            >
+              Genehmigen
+            </Button>
+          </div>
+        )}
       </Card>
     </div>
   );
