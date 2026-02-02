@@ -29,6 +29,7 @@ function UseProjects({ role }: UseRole) {
       if (role === "manager") {
         query = query.eq("manager_id", user.id);
       }
+      
 
       const { data, error } = await query;
       if (error) {

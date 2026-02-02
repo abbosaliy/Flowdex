@@ -19,7 +19,6 @@ function ProjectsDetails() {
 
   const [project, setProject] = useState<ProjectsRow | null>(null);
   const [loading, setLoading] = useState(true);
-  const [pendingStatus, setPendingStatus] = useState<"approved" | "rejected" | "revision" | null>(null);
 
   useEffect(() => {
     if (!projectId) return;
@@ -44,18 +43,22 @@ function ProjectsDetails() {
     fetchProject();
   }, [projectId]);
 
-  async function updateStatus(status: "approved" | "rejected" | "revision") {
-    setPendingStatus(status);
-
-    const { error } = await supabase.from("project").update({ status }).eq("id", Number(projectId));
+  async function updateStatus(status: keyof ProjectsRow) {
+    if (!projectId) return;
+    const localTime = new Date().toISOString();
+    const { error } = await supabase
+      .from("project")
+      .update({ [status]: localTime })
+      .eq("id", Number(projectId));
 
     if (error) {
       toast.error("Status konnte nicht aktualisiert werden");
-      setPendingStatus(null);
+
       console.error(error);
       return;
     }
 
+    setProject({ ...project, [status]: localTime } as ProjectsRow);
     toast.success("Status erfolgreich aktualisiert");
   }
 
@@ -104,32 +107,21 @@ function ProjectsDetails() {
           <div className="text-sm text-gray-500 dark:text-gray-400">Vorteil:</div>
           <div>{project?.benefits}</div>
         </div>
-        {isManager && (project?.status === "submitted" || pendingStatus !== null) && (
-          <div>
-            <Button
-              variant={pendingStatus === "revision" ? "default" : "outline"}
-              className={pendingStatus === "revision" ? "bg-yellow-500 text-white" : ""}
-              onClick={() => updateStatus("revision")}
-              disabled={!!pendingStatus}
-            >
+        {isManager && (
+          <div className="mt-6 flex gap-4">
+            <Button onClick={() => updateStatus("revision")}>
               Zur Bearbetung
+              {project?.revision && (
+                <span className="ml-2 inline-block rounded-full bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-800">Ausstehend</span>
+              )}
             </Button>
-            <Button
-              variant={pendingStatus === "rejected" ? "default" : "outline"}
-              className={pendingStatus === "rejected" ? "bg-red-500 text-white" : ""}
-              onClick={() => updateStatus("rejected")}
-              disabled={!!pendingStatus}
-            >
+            <Button onClick={() => updateStatus("rejected")}>
+              {project?.rejected && (
+                <span className="ml-2 inline-block rounded-full bg-red-100 px-2 py-1 text-xs font-semibold text-red-800">Ausstehend</span>
+              )}
               Ablehnen
             </Button>
-            <Button
-              variant={pendingStatus === "approved" ? "default" : "outline"}
-              className={pendingStatus === "approved" ? "bg-green-500 text-white" : ""}
-              onClick={() => updateStatus("approved")}
-              disabled={!!pendingStatus}
-            >
-              Genehmigen
-            </Button>
+            <Button onClick={() => updateStatus("approved")}> {project?.approved ? "Genehmigt" : "Genehmigen"} </Button>
           </div>
         )}
       </Card>
