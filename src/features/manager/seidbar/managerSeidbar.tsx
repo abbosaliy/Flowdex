@@ -14,7 +14,7 @@ function ManagerSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: bool
       <div className="mb-10 -ml-2 flex w-full items-center justify-between">
         <div className="flex items-center">
           <img
-            src="/images/logo.png"
+            src={`${import.meta.env.BASE_URL}images/logo.png`}
             alt="user"
             className="h-10 w-15"
           />
@@ -43,7 +43,7 @@ function ManagerSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: bool
           </NavLink>
 
           <NavLink
-            to="projekts/accepted"
+            to="genehmigte-projekte"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
@@ -54,7 +54,7 @@ function ManagerSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: bool
           </NavLink>
 
           <NavLink
-            to="projekts/in-progress"
+            to="bearbeitungs-projekte"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
@@ -65,7 +65,7 @@ function ManagerSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: bool
           </NavLink>
 
           <NavLink
-            to="projekts/rejected"
+            to="abgelehnte-projekte"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`

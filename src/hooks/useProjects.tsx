@@ -7,8 +7,9 @@ type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
 type UseRole = {
   role: "owner" | "manager";
 };
+type ProjectStatus = "approved" | "rejected" | "revision" | "all";
 
-function UseProjects({ role }: UseRole) {
+function UseProjects({ role }: UseRole, ststus: ProjectStatus) {
   const [projects, setProjects] = useState<ProjectsRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +30,22 @@ function UseProjects({ role }: UseRole) {
       if (role === "manager") {
         query = query.eq("manager_id", user.id);
       }
-      
+
+      if (ststus === "approved") {
+        query = query.not("approved", "is", null);
+      }
+
+      if (ststus === "rejected") {
+        query = query.not("rejected", "is", null);
+      }
+
+      if (ststus === "revision") {
+        query = query.not("revision", "is", null);
+      }
+
+      if (ststus === "all") {
+        query = query.is("approved", null).is("rejected", null).is("revision", null);
+      }
 
       const { data, error } = await query;
       if (error) {
@@ -44,7 +60,7 @@ function UseProjects({ role }: UseRole) {
     }
 
     fetchProjects();
-  }, [role]);
+  }, [role, ststus]);
 
   return { projects, loading };
 }

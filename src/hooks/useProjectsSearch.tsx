@@ -5,12 +5,14 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { Input } from "../components/ui/input";
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
+type ProjectStatus = "approved" | "rejected" | "revision" | "all";
 interface ProjectsSearchProps {
   role: "user" | "manager";
   basePath: "/user/projekts" | "/manager/projekts";
+  status: ProjectStatus;
 }
 
-function ProjectsSearch({ role, basePath }: ProjectsSearchProps) {
+function ProjectsSearch({ role, basePath, status }: ProjectsSearchProps) {
   const [projects, setProjects] = useState<ProjectsRow[]>([]);
   const [search, setSearch] = useState("");
 
@@ -31,9 +33,25 @@ function ProjectsSearch({ role, basePath }: ProjectsSearchProps) {
         query = query.eq("manager_id", user.id);
       }
 
+      if (status == "approved") {
+        query = query.not("approved", "is", null);
+      }
+
+      if (status == "rejected") {
+        query = query.not("rejected", "is", null);
+      }
+
+      if (status == "revision") {
+        query = query.not("revision", "is", null);
+      }
+
+      if (status == "all") {
+        query = query.is("approved", null).is("rejected", null).is("revision", null);
+      }
+
       const { data, error } = await query;
       if (error) {
-        toast.error("Fehler beim Laden der Projekte .");
+        toast.error("Fehler beim Laden der Projekte.");
         console.log(error);
         return;
       }
@@ -42,7 +60,7 @@ function ProjectsSearch({ role, basePath }: ProjectsSearchProps) {
     }
 
     fetchProjects();
-  }, [role]);
+  }, [role, status]);
 
   const filteredProjects = projects.filter((project) => search && project.project_name?.toLowerCase().includes(search.toLowerCase()));
 
@@ -65,6 +83,7 @@ function ProjectsSearch({ role, basePath }: ProjectsSearchProps) {
               <Link
                 key={project.id}
                 to={`${basePath}/${project.id}`}
+                
                 className="rounded-lg border bg-white p-3 font-semibold hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
               >
                 {project.project_name}

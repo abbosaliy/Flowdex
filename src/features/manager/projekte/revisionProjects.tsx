@@ -1,10 +1,10 @@
 import { PuffLoader } from "react-spinners";
-import ProjectListe from "../../../components/ui/projectsListe";
 import UseProjects from "../../../hooks/useProjects";
+import ProjectListe from "../../../components/ui/projectsListe";
 import ProjectsSearch from "../../../hooks/useProjectsSearch";
 
-function ManagerProjects() {
-  const { projects, loading } = UseProjects({ role: "manager" }, "all");
+function RevisionProjects() {
+  const { projects, loading } = UseProjects({ role: "manager" }, "revision");
   const hasProjects = projects && projects.length > 0;
 
   if (loading) {
@@ -18,28 +18,31 @@ function ManagerProjects() {
       </div>
     );
   }
+
   return (
     <div>
       <div className="m-10 flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Projekte</h2>
+        <h2 className="text-xl font-semibold">Projekte in Bearbeitung</h2>
 
         <ProjectsSearch
           role="manager"
           basePath="/manager/projekts"
-          status="all"
+          status="revision"
         />
       </div>
       {hasProjects ? (
         <ProjectListe
           projects={projects}
           basePath="/manager/projekts"
+          statusAction={false}
+          backPath="/manager/bearbeitungs-projekte"
         />
       ) : (
         <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6">
-          <p className="text-center text-lg text-gray-500">Derzeit liegen keine Projektzuweisungen vor.</p>
+          <p className="text-center text-lg text-gray-500">Es liegen keine Projekte in Bearbeitung vor.</p>
         </div>
       )}
     </div>
   );
 }
-export default ManagerProjects;
+export default RevisionProjects;

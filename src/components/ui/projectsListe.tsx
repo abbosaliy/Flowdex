@@ -7,9 +7,11 @@ type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
 interface ProjectsListeProps {
   projects: ProjectsRow[];
   basePath: string;
+  statusAction?: boolean;
+  backPath?: string;
 }
 
-function ProjectListe({ projects, basePath }: ProjectsListeProps) {
+function ProjectListe({ projects, basePath, statusAction = true, backPath }: ProjectsListeProps) {
   console.log(projects);
 
   return (
@@ -26,6 +28,7 @@ function ProjectListe({ projects, basePath }: ProjectsListeProps) {
 
           <Link
             to={`${basePath}/${project.id}`}
+            state={{ showStatusAction: statusAction, backPath }}
             className="bg-brand hover:bg-brand-hover mt-3 inline-block max-w-50 rounded px-4 py-2 text-white"
           >
             Projekt ansehen

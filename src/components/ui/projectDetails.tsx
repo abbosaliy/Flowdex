@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { PuffLoader } from "react-spinners";
 import { GoArrowLeft } from "react-icons/go";
 import { Card } from "./card";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
 import { Button } from "./button";
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
@@ -13,12 +13,12 @@ type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
 function ProjectsDetails() {
   const { projectId } = useParams();
   const location = useLocation();
-
+  const showStatusAction = location.state?.showStatusAction ?? true;
   const isManager = location.pathname.startsWith("/manager");
-  const backPath = isManager ? "/manager/projekts" : "/user/projekts";
-
+  const backPath = location.state?.backPath ?? (isManager ? "/manager/projekts" : "/user/projekts");
   const [project, setProject] = useState<ProjectsRow | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!projectId) return;
@@ -45,6 +45,7 @@ function ProjectsDetails() {
 
   async function updateStatus(status: keyof ProjectsRow) {
     if (!projectId) return;
+
     const localTime = new Date().toISOString();
     const { error } = await supabase
       .from("project")
@@ -57,7 +58,7 @@ function ProjectsDetails() {
       console.error(error);
       return;
     }
-
+    navigate(-1);
     setProject({ ...project, [status]: localTime } as ProjectsRow);
     toast.success("Status erfolgreich aktualisiert");
   }
@@ -82,7 +83,6 @@ function ProjectsDetails() {
       >
         <GoArrowLeft size={25} /> Zurück zu Projekten
       </Link>
-
       <Card className="p-6 dark:bg-slate-800">
         {!isManager && (
           <div className="flex justify-end">
@@ -94,6 +94,7 @@ function ProjectsDetails() {
             </Link>
           </div>
         )}
+
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2">
           <div className="text-sm text-gray-500 dark:text-gray-400">Projekt Name:</div>
           <div className="text-base font-semibold">{project?.project_name}</div>
@@ -107,20 +108,11 @@ function ProjectsDetails() {
           <div className="text-sm text-gray-500 dark:text-gray-400">Vorteil:</div>
           <div>{project?.benefits}</div>
         </div>
-        {isManager && (
+
+        {isManager && showStatusAction && (
           <div className="mt-6 flex gap-4">
-            <Button onClick={() => updateStatus("revision")}>
-              Zur Bearbetung
-              {project?.revision && (
-                <span className="ml-2 inline-block rounded-full bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-800">Ausstehend</span>
-              )}
-            </Button>
-            <Button onClick={() => updateStatus("rejected")}>
-              {project?.rejected && (
-                <span className="ml-2 inline-block rounded-full bg-red-100 px-2 py-1 text-xs font-semibold text-red-800">Ausstehend</span>
-              )}
-              Ablehnen
-            </Button>
+            <Button onClick={() => updateStatus("revision")}>{project?.revision ? "In Bearbeitung" : "Zur Bearbeitung"}</Button>
+            <Button onClick={() => updateStatus("rejected")}>{project?.rejected ? "Abgelehnt" : "Ablehnen"}</Button>
             <Button onClick={() => updateStatus("approved")}> {project?.approved ? "Genehmigt" : "Genehmigen"} </Button>
           </div>
         )}
