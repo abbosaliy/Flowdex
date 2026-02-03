@@ -24,7 +24,7 @@ function ProfileDropdown({ basePath }: ProfileDropdownProps) {
         className="flex cursor-pointer items-center gap-2 p-1"
       >
         <img
-          src={profile?.avatar_url || "/images/avatar.png"}
+          src={profile?.avatar_url || `${import.meta.env.BASE_URL}images/avatar.png`}
           alt="user"
           className="h-12 w-12 rounded-full object-cover"
         />

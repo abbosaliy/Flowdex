@@ -15,7 +15,7 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
       <div className="mb-10 -ml-2 flex w-full items-center justify-between">
         <div className="flex items-center">
           <img
-            src="/images/logo.png"
+            src={`${import.meta.env.BASE_URL}images/logo.png`}
             alt="user"
             className="h-10 w-15"
           />

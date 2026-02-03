@@ -37,7 +37,7 @@ function Profile() {
       <div className="m-10 overflow-hidden shadow-lg dark:bg-slate-800">
         <div className="relative h-65">
           <img
-            src={cover || "/images/software.jpg"}
+            src={cover || `${import.meta.env.BASE_URL}images/software.jpg`}
             className="h-full w-full object-cover"
           />
 
@@ -54,7 +54,7 @@ function Profile() {
           <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
             <div className="relative">
               <img
-                src={avatar || "/images/avatar.png"}
+                src={avatar || `${import.meta.env.BASE_URL}images/avatar.png`}
                 className="h-36 w-36 rounded-full border-4 object-cover"
               />
               <label className="absolute right-0 bottom-0 cursor-pointer rounded-full bg-white/60 p-1">
