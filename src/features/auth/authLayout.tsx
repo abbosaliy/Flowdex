@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import Register from "./register";
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -54,8 +56,8 @@ function Login() {
       {!open ? (
         <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
-            <CardTitle> Anmelden Sie ihre account</CardTitle>
-            <CardDescription>Lorem ipsum dolor sit amet consectetur</CardDescription>
+            <CardTitle> Anmelden</CardTitle>
+            <CardDescription>Melden Sie sich an, um auf Ihr persönliches Konto zuzugreifen.</CardDescription>
             <CardAction>
               <Button
                 variant={"link"}
@@ -81,19 +83,22 @@ function Login() {
                 <div className="grid gap-2">
                   <div className="flex items-center">
                     <label htmlFor="password">Password</label>
-                    <a
-                      href="#"
-                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                    >
-                      Passwort vergessen?
-                    </a>
                   </div>
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-gray-500"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <FiEyeOff className="h-5 w-5 text-red-500" /> : <FiEye className="h-5 w-5 text-green-500" />}
+                    </button>
+                  </div>
                 </div>
               </div>
             </form>

@@ -21,6 +21,9 @@ import ProjectsEdit from "./components/ui/projectsEdit";
 import ApprovedProjects from "./features/manager/projekte/approvedProjects";
 import RejectedProjects from "./features/manager/projekte/rejectedProjects";
 import RevisionProjects from "./features/manager/projekte/revisionProjects";
+import OwnerApprovedProjects from "./features/userDashboard/projekte/ownerAprovedProjects";
+import OwnerRejectedProjects from "./features/userDashboard/projekte/ownerRejectedProjects";
+import OwnerRevisionProjects from "./features/userDashboard/projekte/ownerRevisionProjects";
 
 function App() {
   const router = createBrowserRouter(
@@ -90,6 +93,18 @@ function App() {
               {
                 path: "projekts/:projectId/edit",
                 element: <ProjectsEdit />,
+              },
+              {
+                path: "angenommene-projekte",
+                element: <OwnerApprovedProjects />,
+              },
+              {
+                path: "abgelehnte-projekte",
+                element: <OwnerRejectedProjects />,
+              },
+              {
+                path: "bearbeitungs-projekte",
+                element: <OwnerRevisionProjects />,
               },
               {
                 path: "profile",

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -15,6 +16,7 @@ function Register() {
   const [position, setPosition] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -67,8 +69,8 @@ function Register() {
       {!open ? (
         <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
-            <CardTitle>Registrieren Sie neue account</CardTitle>
-            <CardDescription>Lorem ipsum dolor sit amet consectetur</CardDescription>
+            <CardTitle>Konto erstellen</CardTitle>
+            <CardDescription>Registrieren Sie sich, um alle Funktionen der Anwendung nutzen zu können.</CardDescription>
             <CardAction>
               <Button
                 variant={"link"}
@@ -125,11 +127,20 @@ function Register() {
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-gray-500"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <FiEyeOff className="h-5 w-5 text-red-500" /> : <FiEye className="h-5 w-5 text-green-500" />}
+                    </button>
+                  </div>
                 </div>
               </div>
             </form>

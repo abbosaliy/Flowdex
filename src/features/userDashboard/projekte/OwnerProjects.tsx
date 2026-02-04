@@ -4,7 +4,7 @@ import UseProjects from "../../../hooks/useProjects";
 import ProjectsSearch from "../../../hooks/useProjectsSearch";
 
 function OwnerProjects() {
-  const { projects, loading } = UseProjects({ role: "owner" });
+  const { projects, loading } = UseProjects({ role: "owner" }, "all");
   const hasProjects = projects && projects.length > 0;
 
   if (loading) {
@@ -22,12 +22,11 @@ function OwnerProjects() {
     <div className="max-w-8xl">
       <div className="m-10 flex items-center justify-between">
         <h2 className="text-xl font-semibold">Projekte</h2>
-        {!hasProjects && (
-          <ProjectsSearch
-            role="user"
-            basePath="/user/projekts"
-          />
-        )}
+        <ProjectsSearch
+          role="user"
+          basePath="/user/projekts"
+          status="all"
+        />
       </div>
       {hasProjects ? (
         <ProjectListe

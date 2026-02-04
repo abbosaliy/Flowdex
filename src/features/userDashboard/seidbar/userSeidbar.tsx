@@ -41,7 +41,6 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
             <IoCreateOutline className="h-6 w-6" />
             Projekt Erstellen
           </NavLink>
-
           <NavLink
             to="projekts"
             onClick={() => setOpen(false)}
@@ -52,20 +51,8 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
             <GrProjects className="h-5 w-5" />
             Projekte
           </NavLink>
-
           <NavLink
-            to="projekts"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <FiRefreshCcw className="h-5 w-5" />
-            Bearbetungs Projekte
-          </NavLink>
-
-          <NavLink
-            to="projekts/completed"
+            to="angenommene-projekte"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
@@ -75,7 +62,17 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
             Angenommene Projekte
           </NavLink>
           <NavLink
-            to="projekts/rejected"
+            to="bearbeitungs-projekte"
+            onClick={() => setOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
+            }
+          >
+            <FiRefreshCcw className="h-5 w-5" />
+            Bearbeitungs Projekte
+          </NavLink>
+          <NavLink
+            to="abgelehnte-projekte"
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
               `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
@@ -98,7 +95,6 @@ function UserSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean
             <FiUser className="h-6 w-6" />
             Profile
           </NavLink>
-
           <NavLink
             to="einstellungen"
             onClick={() => setOpen(false)}
