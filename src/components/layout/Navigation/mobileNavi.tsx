@@ -1,6 +1,6 @@
-import { HiOutlineX } from 'react-icons/hi';
-import { Button } from '../../ui/button';
-import { NavLink } from 'react-router';
+import { HiOutlineX } from "react-icons/hi";
+import { Button } from "../../ui/button";
+import { NavLink } from "react-router";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -10,59 +10,57 @@ interface MobileMenuProps {
 function MobileNavi({ isOpen, onClose }: MobileMenuProps) {
   return (
     <div
-      className={`fixed xl:hidden top-0 right-0 h-screen w-70 flex flex-col items-center p-10  gap-20 bg-white/80 backdrop-blur-xl dark:bg-slate-900  transform transition-transform duration-400 z-50 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
+      className={`fixed top-0 right-0 z-50 flex h-screen w-70 transform flex-col items-center gap-20 bg-white/80 p-10 backdrop-blur-xl transition-transform duration-400 xl:hidden dark:bg-gray-900 ${
+        isOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="self-end ">
+      <div className="self-end">
         <div
           onClick={onClose}
-          className="text-blue-500 cursor-pointer  "
+          className="cursor-pointer text-blue-500"
         >
-          <HiOutlineX className="w-10 h-10" />
+          <HiOutlineX className="h-10 w-10" />
         </div>
       </div>
-      <div className="flex flex-col items-center gap-30 ">
+      <div className="flex flex-col items-center gap-30">
         <ul className="flex flex-col items-center gap-10">
           <NavLink
-            to={'/'}
+            to={"/"}
             onClick={onClose}
-            className="relative group text-xl duration-300 cursor-pointer"
+            className="group relative cursor-pointer text-xl duration-300"
           >
             <p className="group-hover:text-blue-500">Home</p>
           </NavLink>
           <NavLink
-            to={'about'}
+            to={"about"}
             onClick={onClose}
-            className="relative group text-xl duration-300 cursor-pointer"
+            className="group relative cursor-pointer text-xl duration-300"
           >
             <p className="group-hover:text-blue-500">Über uns</p>
           </NavLink>
 
           <div
-            className="relative group text-xl duration-300 cursor-pointer"
+            className="group relative cursor-pointer text-xl duration-300"
             onClick={onClose}
           >
             <p className="group-hover:text-blue-500">Lebenslauf</p>
           </div>
 
           <div
-            className="relative group text-xl duration-300 cursor-pointer"
+            className="group relative cursor-pointer text-xl duration-300"
             onClick={onClose}
           >
             <p className="group-hover:text-blue-500"> Projekte</p>
           </div>
 
           <div
-            className="relative group text-xl duration-300 cursor-pointer"
+            className="group relative cursor-pointer text-xl duration-300"
             onClick={onClose}
           >
             <p className="group-hover:text-blue-500"> Kontakt</p>
           </div>
         </ul>
-        <Button className="bg-blue-500 text-white hover:bg-blue-600  focus:ring-blue-300 dark:focus:ring-blue-800 cursor-pointer">
-          Anmelden
-        </Button>
+        <Button className="cursor-pointer bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-300 dark:focus:ring-blue-800">Anmelden</Button>
       </div>
     </div>
   );

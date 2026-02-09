@@ -24,6 +24,7 @@ import RevisionProjects from "./features/manager/projekte/revisionProjects";
 import OwnerApprovedProjects from "./features/userDashboard/projekte/ownerAprovedProjects";
 import OwnerRejectedProjects from "./features/userDashboard/projekte/ownerRejectedProjects";
 import OwnerRevisionProjects from "./features/userDashboard/projekte/ownerRevisionProjects";
+import AuthGuard from "./components/routes/roleGuard";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,77 +43,87 @@ function App() {
             ],
           },
           {
-            path: "manager",
-            element: <Meneger />,
+            element: <AuthGuard role="manager" />,
             children: [
-              { index: true, element: <ManagerProjects /> },
-              { path: "projekts", element: <ManagerProjects /> },
               {
-                path: "projekts/:projectId",
-                element: <ProjectsDetails />,
-              },
-              {
-                path: "genehmigte-projekte",
-                element: <ApprovedProjects />,
-              },
-              {
-                path: "bearbeitungs-projekte",
-                element: <RevisionProjects />,
-              },
-              {
-                path: "abgelehnte-projekte",
-                element: <RejectedProjects />,
-              },
-              {
-                path: "profile",
-                element: <Profile />,
-              },
-              {
-                path: "einstellungen",
-                element: <Settings />,
+                path: "manager",
+                element: <Meneger />,
+                children: [
+                  { index: true, element: <ManagerProjects /> },
+                  { path: "projekts", element: <ManagerProjects /> },
+                  {
+                    path: "projekts/:projectId",
+                    element: <ProjectsDetails />,
+                  },
+                  {
+                    path: "genehmigte-projekte",
+                    element: <ApprovedProjects />,
+                  },
+                  {
+                    path: "bearbeitungs-projekte",
+                    element: <RevisionProjects />,
+                  },
+                  {
+                    path: "abgelehnte-projekte",
+                    element: <RejectedProjects />,
+                  },
+                  {
+                    path: "profile",
+                    element: <Profile />,
+                  },
+                  {
+                    path: "einstellungen",
+                    element: <Settings />,
+                  },
+                ],
               },
             ],
           },
           {
-            path: "user",
-            element: <User />,
+            element: <AuthGuard role="projekinhaber" />,
             children: [
-              { index: true, element: <Projekt /> },
               {
-                path: "projekt-erstellen",
-                element: <Projekt />,
-              },
-              {
-                path: "projekts",
-                element: <OwnerProjects />,
-              },
-              {
-                path: "projekts/:projectId",
-                element: <ProjectsDetails />,
-              },
-              {
-                path: "projekts/:projectId/edit",
-                element: <ProjectsEdit />,
-              },
-              {
-                path: "angenommene-projekte",
-                element: <OwnerApprovedProjects />,
-              },
-              {
-                path: "abgelehnte-projekte",
-                element: <OwnerRejectedProjects />,
-              },
-              {
-                path: "bearbeitungs-projekte",
-                element: <OwnerRevisionProjects />,
-              },
-              {
-                path: "profile",
-                element: <Profile />,
-              },
-              {
-                path: "einstellungen",
-                element: <Settings />,
+                path: "user",
+                element: <User />,
+                children: [
+                  { index: true, element: <Projekt /> },
+                  {
+                    path: "projekt-erstellen",
+                    element: <Projekt />,
+                  },
+                  {
+                    path: "projekts",
+                    element: <OwnerProjects />,
+                  },
+                  {
+                    path: "projekts/:projectId",
+                    element: <ProjectsDetails />,
+                  },
+                  {
+                    path: "projekts/:projectId/edit",
+                    element: <ProjectsEdit />,
+                  },
+                  {
+                    path: "angenommene-projekte",
+                    element: <OwnerApprovedProjects />,
+                  },
+                  {
+                    path: "abgelehnte-projekte",
+                    element: <OwnerRejectedProjects />,
+                  },
+                  {
+                    path: "bearbeitungs-projekte",
+                    element: <OwnerRevisionProjects />,
+                  },
+                  {
+                    path: "profile",
+                    element: <Profile />,
+                  },
+                  {
+                    path: "einstellungen",
+                    element: <Settings />,
+                  },
+                ],
               },
             ],
           },
