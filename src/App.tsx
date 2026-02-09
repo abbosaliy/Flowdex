@@ -25,6 +25,7 @@ import OwnerApprovedProjects from "./features/userDashboard/projekte/ownerAprove
 import OwnerRejectedProjects from "./features/userDashboard/projekte/ownerRejectedProjects";
 import OwnerRevisionProjects from "./features/userDashboard/projekte/ownerRevisionProjects";
 import AuthGuard from "./components/routes/roleGuard";
+import CookieBanner from "./components/Cookie/CokieBanner";
 
 function App() {
   const router = createBrowserRouter(
@@ -137,6 +138,7 @@ function App() {
   return (
     <ThemeProvider storageKey="theme">
       <RouterProvider router={router} />
+      <CookieBanner />
       <Toaster richColors></Toaster>
     </ThemeProvider>
   );
