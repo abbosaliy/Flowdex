@@ -44,16 +44,7 @@ function Footer() {
                 className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
                 href="#"
               >
-                Über uns
-              </a>
-            </li>
-
-            <li>
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Services
+                Kontakt
               </a>
             </li>
 
@@ -65,7 +56,6 @@ function Footer() {
                 Impressum
               </a>
             </li>
-
             <li>
               <a
                 className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"

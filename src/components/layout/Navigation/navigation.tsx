@@ -40,37 +40,8 @@ function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen:
                     Über uns
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to={"history"}
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                  >
-                    History
-                  </NavLink>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    Services
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
-                  >
-                    Projects
-                  </a>
-                </li>
-
-                <li></li>
               </ul>
             </nav>
-
             <div className="flex items-center gap-4">
               <div className="sm:flex sm:gap-4">
                 <ThemaToggle />
