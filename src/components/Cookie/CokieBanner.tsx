@@ -49,7 +49,6 @@ const CookieBanner = () => {
           >
             Ablehnen
           </button>
-
           <button
             onClick={() => saveConsent("accepted")}
             className="cursor-pointer rounded bg-blue-600 px-4 py-1 text-sm text-white hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400"

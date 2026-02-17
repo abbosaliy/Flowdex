@@ -1,34 +1,51 @@
 function Hero() {
   return (
-    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 py-20 md:grid-cols-3">
-      <div className="flex flex-col items-center rounded-xl bg-blue-200/40 p-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-blue-200/60 hover:shadow-xl">
-        <img
-          className="h-50 w-70"
-          src={`${import.meta.env.BASE_URL}images/ideas.png`}
-          alt=""
-        />
-        <p className="text-lg text-neutral-900 dark:text-white">1. Submit project ideas</p>
-        <span className="text-neutral-600 dark:text-neutral-400">User submit ther project ideas</span>
+    <section className="bg-white py-24 dark:bg-gray-900">
+      <div className="mx-auto max-w-7xl px-6 text-center">
+        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
+          So funktioniert <span className="text-blue-600 dark:text-blue-400">Flowdex</span>
+        </h2>
+
+        <p className="mt-4 text-gray-600 dark:text-gray-400">Ein klar strukturierter Workflow für moderne Projektzusammenarbeit</p>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="group rounded-2xl border border-gray-200 bg-gray-50 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+            <img
+              className="mx-auto h-32 w-auto"
+              src={`${import.meta.env.BASE_URL}images/ideas.png`}
+              alt="Submit ideas"
+            />
+
+            <h3 className="mt-6 text-lg font-semibold text-gray-900 dark:text-white">1. Submit Project Ideas</h3>
+
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Users can submit structured project ideas directly through the platform.</p>
+          </div>
+          <div className="group rounded-2xl border border-gray-200 bg-gray-50 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+            <img
+              className="mx-auto h-32 w-auto"
+              src={`${import.meta.env.BASE_URL}images/review.png`}
+              alt="Review process"
+            />
+
+            <h3 className="mt-6 text-lg font-semibold text-gray-900 dark:text-white">2. Manager Review</h3>
+
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Managers review submissions, provide feedback and approve projects.</p>
+          </div>
+          <div className="group rounded-2xl border border-gray-200 bg-gray-50 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+            <img
+              className="mx-auto h-32 w-auto"
+              src={`${import.meta.env.BASE_URL}images/feedbeck.png`}
+              alt="Track progress"
+            />
+
+            <h3 className="mt-6 text-lg font-semibold text-gray-900 dark:text-white">3. Track Status & Feedback</h3>
+
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Monitor project progress and gain valuable feedback in real time.</p>
+          </div>
+        </div>
       </div>
-      <div className="flex flex-col items-center rounded-xl bg-blue-200/40 p-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-blue-200/60 hover:shadow-xl">
-        <img
-          className="h-50 w-70"
-          src={`${import.meta.env.BASE_URL}images/review.png`}
-          alt=""
-        />
-        <p className="text-lg text-neutral-900 dark:text-white">2. Managers review</p>
-        <span className="text-neutral-600 dark:text-neutral-400">Manager review and approve</span>
-      </div>
-      <div className="flex flex-col items-center rounded-xl bg-blue-200/40 p-4 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-blue-200/60 hover:shadow-xl">
-        <img
-          className="h-55 w-70"
-          src={`${import.meta.env.BASE_URL}images/feedbeck.png`}
-          alt=""
-        />
-        <p className="text-lg text-neutral-900 dark:text-white">3. Track status & feedback</p>
-        <span className="text-neutral-600 dark:text-neutral-400">Tarck status and gain valuable feedback</span>
-      </div>
-    </div>
+    </section>
   );
 }
+
 export default Hero;

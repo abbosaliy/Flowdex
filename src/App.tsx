@@ -5,7 +5,6 @@ import { RouterProvider } from "react-router/dom";
 import Root from "./components/routes/root";
 import About from "./components/layout/about";
 import AuthLayout from "./features/auth/authLayout";
-import History from "./components/layout/history";
 import Home from "./components/layout/home";
 import Meneger from "./features/manager/manager";
 import User from "./features/userDashboard/userDashboard";
@@ -26,6 +25,8 @@ import OwnerRejectedProjects from "./features/userDashboard/projekte/ownerReject
 import OwnerRevisionProjects from "./features/userDashboard/projekte/ownerRevisionProjects";
 import AuthGuard from "./components/routes/roleGuard";
 import CookieBanner from "./components/Cookie/CokieBanner";
+import Impressum from "./components/layout/Footer/impressum";
+import Datenschutz from "./components/layout/Footer/datenschutz";
 
 function App() {
   const router = createBrowserRouter(
@@ -39,8 +40,9 @@ function App() {
             children: [
               { index: true, element: <Home /> },
               { path: "about", element: <About /> },
-              { path: "history", element: <History /> },
               { path: "auth", element: <AuthLayout /> },
+              { path: "/impressum", element: <Impressum /> },
+              { path: "/datenschutz", element: <Datenschutz /> },
             ],
           },
           {

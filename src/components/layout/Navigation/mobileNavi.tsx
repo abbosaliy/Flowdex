@@ -1,5 +1,4 @@
 import { HiOutlineX } from "react-icons/hi";
-import { Button } from "../../ui/button";
 import { NavLink } from "react-router";
 
 interface MobileMenuProps {
@@ -9,60 +8,63 @@ interface MobileMenuProps {
 
 function MobileNavi({ isOpen, onClose }: MobileMenuProps) {
   return (
-    <div
-      className={`fixed top-0 right-0 z-50 flex h-screen w-70 transform flex-col items-center gap-20 bg-white/80 p-10 backdrop-blur-xl transition-transform duration-400 xl:hidden dark:bg-gray-900 ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
-    >
-      <div className="self-end">
-        <div
-          onClick={onClose}
-          className="cursor-pointer text-blue-500"
-        >
-          <HiOutlineX className="h-10 w-10" />
+    <>
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      />
+
+      <div
+        className={`fixed top-0 right-0 z-50 flex h-screen w-72 transform flex-col bg-white p-8 shadow-xl transition-transform duration-300 lg:hidden dark:bg-gray-900 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+      >
+        <div className="flex justify-end">
+          <button
+            onClick={onClose}
+            className="text-gray-600 transition hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+          >
+            <HiOutlineX className="h-8 w-8" />
+          </button>
         </div>
-      </div>
-      <div className="flex flex-col items-center gap-30">
-        <ul className="flex flex-col items-center gap-10">
+
+        <nav className="mt-12 flex flex-col gap-8 text-lg font-medium">
           <NavLink
-            to={"/"}
+            to="/"
             onClick={onClose}
-            className="group relative cursor-pointer text-xl duration-300"
+            className={({ isActive }) =>
+              `transition ${
+                isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              }`
+            }
           >
-            <p className="group-hover:text-blue-500">Home</p>
-          </NavLink>
-          <NavLink
-            to={"about"}
-            onClick={onClose}
-            className="group relative cursor-pointer text-xl duration-300"
-          >
-            <p className="group-hover:text-blue-500">Über uns</p>
+            Home
           </NavLink>
 
-          <div
-            className="group relative cursor-pointer text-xl duration-300"
+          <NavLink
+            to="about"
             onClick={onClose}
+            className={({ isActive }) =>
+              `transition ${
+                isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+              }`
+            }
           >
-            <p className="group-hover:text-blue-500">Lebenslauf</p>
-          </div>
+            Über uns
+          </NavLink>
+        </nav>
 
-          <div
-            className="group relative cursor-pointer text-xl duration-300"
-            onClick={onClose}
-          >
-            <p className="group-hover:text-blue-500"> Projekte</p>
-          </div>
-
-          <div
-            className="group relative cursor-pointer text-xl duration-300"
-            onClick={onClose}
-          >
-            <p className="group-hover:text-blue-500"> Kontakt</p>
-          </div>
-        </ul>
-        <Button className="cursor-pointer bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-300 dark:focus:ring-blue-800">Anmelden</Button>
+        <div className="flex grow" />
+        <NavLink
+          to="auth"
+          onClick={onClose}
+          className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-all duration-300 hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
+        >
+          Anmelden
+        </NavLink>
       </div>
-    </div>
+    </>
   );
 }
+
 export default MobileNavi;

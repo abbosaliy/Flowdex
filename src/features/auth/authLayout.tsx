@@ -28,12 +28,10 @@ function Login() {
 
     if (error) {
       toast.error("Fehler beim einloggen");
-      console.log(error);
       return;
     }
 
     const userId = data.user?.id;
-    console.log(userId);
 
     const { data: profile, error: profileError } = await supabase.from("profile").select("position").eq("id", userId).single();
 
@@ -106,7 +104,7 @@ function Login() {
           <CardFooter className="flex flex-col gap-2">
             <Button
               type="submit"
-              className="w-full cursor-pointer"
+              className="w-full cursor-pointer bg-blue-500 text-white hover:bg-blue-600"
               onClick={handleLogin}
             >
               Login

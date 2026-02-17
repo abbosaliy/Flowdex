@@ -38,7 +38,6 @@ function Register() {
     }
 
     const userId = data.user?.id;
-    console.log(userId);
 
     const { error: profileError } = await supabase.from("profile").insert([
       {
@@ -52,7 +51,6 @@ function Register() {
 
     if (profileError) {
       toast.error("Etwas ist schiefgelaufen.");
-      console.log(profileError);
       return;
     }
 
@@ -148,7 +146,7 @@ function Register() {
           <CardFooter className="flex flex-col gap-2">
             <Button
               type="submit"
-              className="w-full cursor-pointer"
+              className="w-full cursor-pointer bg-blue-500 text-white hover:bg-blue-600"
               onClick={handleRegister}
             >
               Registrieren

@@ -4,87 +4,75 @@ import MobileNavi from "./mobileNavi";
 
 function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (open: boolean) => void }) {
   return (
-    <header className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl py-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/80">
+      <div className="mx-auto max-w-7xl px-6">
         <div className="flex h-16 items-center justify-between">
-          <div className="-ml-8 flex-1 sm:-ml-10 md:flex md:items-center md:gap-12">
-            <div className="flex items-center">
-              <img
-                src={`${import.meta.env.BASE_URL}images/logo.png`}
-                alt="Logo"
-                className="h-20 w-auto"
-              />
-              <p className="-ml-6 text-2xl font-semibold">Flowdex</p>
-            </div>
+          <div className="flex items-center gap-2">
+            <img
+              src={`${import.meta.env.BASE_URL}images/logo.png`}
+              alt="Flowdex Logo"
+              className="h-10 w-auto"
+            />
+            <span className="text-xl font-semibold text-gray-900 dark:text-white">Flowdex</span>
           </div>
-
-          <div className="md:flex md:items-center md:gap-12">
-            <nav
-              aria-label="Global"
-              className="hidden lg:block"
+          <nav className="hidden items-center gap-8 text-sm font-medium lg:flex">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `transition ${
+                  isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                }`
+              }
             >
-              <ul className="flex items-center gap-6 text-sm">
-                <li>
-                  <NavLink
-                    to={"/"}
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={"about"}
-                    className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                  >
-                    Über uns
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-            <div className="flex items-center gap-4">
-              <div className="sm:flex sm:gap-4">
-                <ThemaToggle />
-                <div className="hidden lg:block">
-                  <NavLink
-                    to={"auth"}
-                    className="cursor-pointer rounded-sm bg-blue-500 px-3 py-2 text-white hover:bg-blue-600 focus:ring-blue-300 dark:focus:ring-blue-800"
-                  >
-                    Anmelden
-                  </NavLink>
-                </div>
-              </div>
-
-              <div className="block lg:hidden">
-                <button
-                  onClick={() => setMenuOpen(true)}
-                  className="cursor-pointer rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="size-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                  </svg>
-                </button>
-                <MobileNavi
-                  isOpen={menuOpen}
-                  onClose={() => setMenuOpen(false)}
+              Home
+            </NavLink>
+            <NavLink
+              to="about"
+              className={({ isActive }) =>
+                `transition ${
+                  isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                }`
+              }
+            >
+              Über uns
+            </NavLink>
+          </nav>
+          <div className="flex items-center gap-4">
+            <ThemaToggle />
+            <NavLink
+              to="auth"
+              className="hidden items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none lg:inline-flex dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700"
+            >
+              Anmelden
+            </NavLink>
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="rounded-md bg-gray-100 p-2 text-gray-600 transition hover:bg-gray-200 lg:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
-              </div>
-            </div>
+              </svg>
+            </button>
+            <MobileNavi
+              isOpen={menuOpen}
+              onClose={() => setMenuOpen(false)}
+            />
           </div>
         </div>
       </div>
     </header>
   );
 }
+
 export default Navigation;
