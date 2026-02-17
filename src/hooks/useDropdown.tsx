@@ -18,7 +18,6 @@ function useDropdown() {
 
       if (error) {
         toast.error("Profil konnte nicht geladen werden");
-        console.error(error);
         return;
       }
 

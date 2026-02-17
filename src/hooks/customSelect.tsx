@@ -17,12 +17,10 @@ function CustomSelect({ value, onselect }: Props) {
       const { data, error } = await supabase.from("profile").select("*").eq("position", "manager");
 
       if (error) {
-        console.log(error);
         return;
       }
 
       setProfiles(data);
-      console.log(data);
     }
 
     fetschUser();

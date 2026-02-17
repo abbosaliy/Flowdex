@@ -9,33 +9,41 @@ function OwnerProjects() {
 
   if (loading) {
     return (
-      <div className="flex min-h-[calc(100vh-100px)] items-center justify-center">
+      <div className="flex min-h-[75vh] items-center justify-center">
         <PuffLoader
-          size={100}
-          color="rgb(60 80 224)"
-          loading={loading}
+          size={65}
+          color="rgb(59 130 246)"
         />
       </div>
     );
   }
+
   return (
-    <div className="max-w-8xl">
-      <div className="m-10 flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Projekte</h2>
+    <div className="px-4 py-10 md:px-8 lg:px-12">
+      <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Projekte</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Übersicht aller deiner eingereichten Projekte</p>
+        </div>
         <ProjectsSearch
           role="user"
           basePath="/user/projekts"
           status="all"
+          showStatusAction={false}
         />
       </div>
+      
       {hasProjects ? (
         <ProjectListe
           projects={projects}
           basePath="/user/projekts"
         />
       ) : (
-        <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6">
-          <p className="text-center text-lg text-gray-500">Du hast noch keine Projekte - erstelle jetzt dein erstes Projekt.</p>
+        <div className="flex min-h-[55vh] flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-8 py-12 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">Noch keine Projekte vorhanden</p>
+          <p className="mt-3 max-w-md text-sm text-gray-500 dark:text-gray-400">
+            Du hast noch keine Projekte erstellt. Starte jetzt dein erstes Projekt.
+          </p>
         </div>
       )}
     </div>

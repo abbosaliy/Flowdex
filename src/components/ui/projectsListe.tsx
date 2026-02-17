@@ -12,27 +12,30 @@ interface ProjectsListeProps {
 }
 
 function ProjectListe({ projects, basePath, statusAction = true, backPath }: ProjectsListeProps) {
-  console.log(projects);
-
   return (
-    <div className="gap-x m-10 flex max-h-165 flex-col gap-2 overflow-y-scroll p-6 shadow-lg dark:bg-slate-800">
+    <div className="space-y-4">
       {projects.map((project) => (
         <Card
           key={project.id}
-          className="p-4 dark:bg-slate-900"
+          className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
         >
+          {/* Project Info */}
           <div>
-            <p className="text-sm dark:text-gray-300">Projekt Name:</p>
-            <h3 className="text-xl font-semibold">{project.project_name}</h3>
+            <p className="text-xs tracking-wide text-gray-400 uppercase dark:text-gray-500">Projektname</p>
+
+            <h3 className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">{project.project_name}</h3>
           </div>
 
-          <Link
-            to={`${basePath}/${project.id}`}
-            state={{ showStatusAction: statusAction, backPath }}
-            className="bg-brand hover:bg-brand-hover mt-3 inline-block max-w-50 rounded px-4 py-2 text-white"
-          >
-            Projekt ansehen
-          </Link>
+          {/* Action */}
+          <div className="mt-4 flex justify-end">
+            <Link
+              to={`${basePath}/${project.id}`}
+              state={{ showStatusAction: statusAction, backPath }}
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              Projekt ansehen
+            </Link>
+          </div>
         </Card>
       ))}
     </div>

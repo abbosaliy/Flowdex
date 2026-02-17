@@ -4,105 +4,107 @@ import { GrProjects } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
 import { NavLink } from "react-router";
 
-function ManagerSeidbar({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
+function ManagerSidebar({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
+  const linkStyle = ({ isActive }: { isActive: boolean }) =>
+    `flex items-center gap-4 rounded-lg px-3 py-2 text-sm font-medium transition-all
+     ${
+       isActive
+         ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400"
+         : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+     }`;
+
   return (
-    <div
-      className={`left-0 z-50 flex h-full w-75 flex-col bg-white p-4 duration-300 dark:bg-slate-800 ${
-        open ? "translate-x-0" : "-translate-x-full"
-      } fixed top-0 left-0 lg:static lg:translate-x-0`}
-    >
-      <div className="mb-10 -ml-2 flex w-full items-center justify-between">
-        <div className="flex items-center">
-          <img
-            src={`${import.meta.env.BASE_URL}images/logo.png`}
-            alt="user"
-            className="h-10 w-15"
-          />
-          <h1 className="text-2xl font-bold">Flowdex</h1>
-        </div>
-        <button
+    <>
+      {open && (
+        <div
           onClick={() => setOpen(false)}
-          className="cursor-pointer lg:hidden"
-        >
-          <GoArrowLeft className="h-8 w-8" />
-        </button>
-      </div>
-
-      <div className="ml-2 flex flex-col gap-5">
-        <h3 className="text-lg font-semibold text-black/70 dark:text-slate-300">Menue</h3>
-        <ul className="-ml-3 flex flex-col gap-4">
-          <NavLink
-            to="projekts"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+        />
+      )}
+      <aside
+        className={`fixed top-0 left-0 z-50 flex h-full w-64 flex-col border-r border-gray-200 bg-white px-4 py-6 shadow-lg transition-transform duration-300 dark:border-gray-800 dark:bg-gray-900 ${open ? "translate-x-0" : "-translate-x-full"} lg:static lg:translate-x-0`}
+      >
+        <div className="mb-10 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img
+              src={`${import.meta.env.BASE_URL}images/logo.png`}
+              alt="Flowdex Logo"
+              className="h-8 w-auto"
+            />
+            <span className="text-lg font-semibold text-gray-900 dark:text-white">Flowdex</span>
+          </div>
+          <button
             onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
+            className="text-gray-500 hover:text-gray-800 lg:hidden dark:text-gray-400 dark:hover:text-white"
           >
-            <GrProjects className="h-5 w-5" />
-            Projekte
-          </NavLink>
+            <GoArrowLeft className="h-6 w-6" />
+          </button>
+        </div>
+        <div className="flex flex-col gap-6">
+          <h3 className="text-xs font-semibold tracking-wider text-gray-400 uppercase dark:text-gray-500">Menü</h3>
 
-          <NavLink
-            to="genehmigte-projekte"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <FiCheckCircle className="h-5 w-5" />
-            Angenommen
-          </NavLink>
+          <nav className="flex flex-col gap-2">
+            <NavLink
+              to="projekts"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <GrProjects className="h-4 w-4" />
+              Projekte
+            </NavLink>
 
-          <NavLink
-            to="bearbeitungs-projekte"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <FiRefreshCcw className="h-5 w-5" />
-            In Bearbeitung
-          </NavLink>
+            <NavLink
+              to="genehmigte-projekte"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <FiCheckCircle className="h-4 w-4" />
+              Angenommen
+            </NavLink>
 
-          <NavLink
-            to="abgelehnte-projekte"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <FiXCircle className="h-5 w-5" />
-            Abgelehnt
-          </NavLink>
-        </ul>
-      </div>
+            <NavLink
+              to="bearbeitungs-projekte"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <FiRefreshCcw className="h-4 w-4" />
+              In Bearbeitung
+            </NavLink>
 
-      <div className="mt-auto ml-2">
-        <ul className="-ml-3 flex flex-col gap-4">
-          <NavLink
-            to="profile"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <FiUser className="h-6 w-6" />
-            Profile
-          </NavLink>
+            <NavLink
+              to="abgelehnte-projekte"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <FiXCircle className="h-4 w-4" />
+              Abgelehnt
+            </NavLink>
+          </nav>
+        </div>
+        <div className="mt-auto border-t border-gray-200 pt-8 dark:border-gray-800">
+          <nav className="flex flex-col gap-2">
+            <NavLink
+              to="profile"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <FiUser className="h-4 w-4" />
+              Profil
+            </NavLink>
 
-          <NavLink
-            to="einstellungen"
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-4 rounded-md p-2 text-lg duration-300 hover:bg-black/10 dark:text-slate-100 dark:hover:bg-slate-700 ${isActive ? "bg-black/10 dark:bg-slate-700" : ""}`
-            }
-          >
-            <IoSettingsOutline className="h-6 w-6" />
-            Einstellung
-          </NavLink>
-        </ul>
-      </div>
-    </div>
+            <NavLink
+              to="einstellungen"
+              onClick={() => setOpen(false)}
+              className={linkStyle}
+            >
+              <IoSettingsOutline className="h-4 w-4" />
+              Einstellungen
+            </NavLink>
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 }
-export default ManagerSeidbar;
+
+export default ManagerSidebar;

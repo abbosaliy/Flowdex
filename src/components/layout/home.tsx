@@ -4,12 +4,12 @@ import Hero from "./hero";
 function Home() {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 py-24">
+      <div className="mx-auto mt-24 max-w-7xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
               Der kollaborative Arbeitsplatz <br />
-              für modernes <span className="text-blue-600 dark:text-blue-400">Projektmanagement</span>
+              für modernes <span className="text-blue-500 dark:text-blue-400">Projektmanagement</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-gray-600 dark:text-gray-400">
@@ -36,7 +36,7 @@ function Home() {
             />
           </div>
         </div>
-        <div className="mt-32">
+        <div className="mt-5">
           <Hero />
         </div>
       </div>

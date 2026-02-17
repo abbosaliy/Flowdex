@@ -27,7 +27,6 @@ function Projekt() {
     } = await supabase.auth.getUser();
 
     if (userError || !user) {
-      console.log(userError);
       return;
     }
 
@@ -43,7 +42,6 @@ function Projekt() {
     ]);
 
     if (error) {
-      console.log(error);
       toast.error("Projekt konnte nicht erstellt werden.");
     } else {
       toast.success("Das Projekt wurde erfolgreich erstellt.");
@@ -58,55 +56,56 @@ function Projekt() {
   }
 
   return (
-    <div className="m-10 max-w-6xl">
-      <h2 className="mb-6 text-xl font-semibold">Projekte erstellen</h2>
-
-      <div className="overflow-hidden rounded-lg border bg-white p-6 shadow-md dark:bg-slate-800">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="flex flex-col gap-2">
-            <p className="text-sm dark:text-gray-300">Projekt Name</p>
-            <Input
-              type="text"
-              placeholder="Projekt Name"
-              value={value.project_name}
-              onChange={(e) => setValue({ ...value, project_name: e.target.value })}
-            />
+    <div className="max-w-6xl px-4 py-10 md:px-8 lg:px-12">
+      <h2 className="mb-8 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Projekt erstellen</h2>
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="px-8 py-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Projekt Name</label>
+              <Input
+                type="text"
+                placeholder="Projekt Name"
+                value={value.project_name}
+                onChange={(e) => setValue({ ...value, project_name: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Manager auswählen</label>
+              <CustomSelect
+                value={value.manager_id}
+                onselect={(id) => setValue({ ...value, manager_id: id })}
+              />
+            </div>
+            <div className="space-y-2 md:col-span-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Projekt Beschreibung</label>
+              <Textarea
+                placeholder="Projekt Beschreibung"
+                value={value.description}
+                onChange={(e) => setValue({ ...value, description: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Ziel des Projekts</label>
+              <Textarea
+                placeholder="Ziel des Projekts"
+                value={value.purpose}
+                onChange={(e) => setValue({ ...value, purpose: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Projekt Vorteile</label>
+              <Textarea
+                placeholder="Projekt Vorteile"
+                value={value.benefits}
+                onChange={(e) => setValue({ ...value, benefits: e.target.value })}
+              />
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm dark:text-gray-300">Projekt Beschreibung</p>
-            <Textarea
-              placeholder="Projekt Beschreibung"
-              value={value.description}
-              onChange={(e) => setValue({ ...value, description: e.target.value })}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm dark:text-gray-300">Ziel des Projekts</p>
-            <Textarea
-              placeholder="Ziel des Projekts"
-              value={value.purpose}
-              onChange={(e) => setValue({ ...value, purpose: e.target.value })}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm dark:text-gray-300">Projekt Vorteil</p>
-            <Textarea
-              placeholder="Projekt Vorteil"
-              value={value.benefits}
-              onChange={(e) => setValue({ ...value, benefits: e.target.value })}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm dark:text-gray-300">Manager Auswahlen</p>
-            <CustomSelect
-              value={value.manager_id}
-              onselect={(id) => setValue({ ...value, manager_id: id })}
-            ></CustomSelect>
-          </div>
-          <div className="flex justify-end gap-3 pt-4">
+          <div className="mt-10 flex justify-end">
             <Button
               type="submit"
-              className="bg-success hover:bg-success-hover cursor-pointer text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
               onClick={handleSend}
             >
               Senden

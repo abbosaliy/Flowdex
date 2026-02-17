@@ -9,98 +9,95 @@ function Settings() {
 
   if (loading) {
     return (
-      <div className="flex min-h-[calc(100vh-100px)] items-center justify-center">
+      <div className="flex min-h-[75vh] items-center justify-center">
         <PuffLoader
-          size={100}
-          color="rgb(60 80 224)"
-          loading={loading}
+          size={65}
+          color="rgb(59 130 246)"
         />
       </div>
     );
   }
 
   if (!profile) {
-    return <p className="m-10">Profil nicht gefunden</p>;
+    return (
+      <div className="px-4 py-10 md:px-8 lg:px-12">
+        <p className="text-gray-500 dark:text-gray-400">Profil nicht gefunden</p>
+      </div>
+    );
   }
 
   return (
-    <div className="m-10 max-w-6xl">
-      <h2 className="mb-6 text-xl font-semibold">Einstellung</h2>
+    <div className="max-w-6xl px-4 py-10 md:px-8 lg:px-12">
+      <h2 className="mb-8 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Einstellungen</h2>
 
-      <div className="overflow-hidden rounded-lg border bg-white shadow-lg dark:bg-slate-800">
-        <div className="p-8">
-          <h3 className="text-lg">Persönliche Infos</h3>
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        {/* Section Header */}
+        <div className="px-8 py-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Persönliche Informationen</h3>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Aktualisieren Sie Ihre persönlichen Daten und Links.</p>
         </div>
 
-        <div className="border-t dark:border-slate-700" />
-
-        <div className="p-8">
-          <div className="flex flex-col gap-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div>
-                <p className="text-sm dark:text-gray-300">Vorname</p>
+        <div className="border-t border-gray-200 dark:border-gray-700" />
+        <div className="px-8 py-8">
+          <div className="flex flex-col gap-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Vorname</label>
                 <Input
                   value={profile.first_name ?? ""}
                   onChange={(e) => updateField("first_name", e.target.value)}
                 />
               </div>
-
-              <div>
-                <p className="text-sm dark:text-gray-300">Nachname</p>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nachname</label>
                 <Input
                   value={profile.last_name ?? ""}
                   onChange={(e) => updateField("last_name", e.target.value)}
                 />
               </div>
-
-              <div>
-                <p className="text-sm dark:text-gray-300">Email</p>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                 <Input
                   value={profile.email ?? ""}
                   onChange={(e) => updateField("email", e.target.value)}
                 />
               </div>
-
-              <div>
-                <p className="text-sm dark:text-gray-300">Position</p>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Position</label>
                 <Input
                   value={profile.position ?? ""}
                   onChange={(e) => updateField("position", e.target.value)}
                 />
               </div>
-
-              <div>
-                <p className="text-sm dark:text-gray-300">Github Url</p>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">GitHub URL</label>
                 <Input
                   value={profile.github_url ?? ""}
                   onChange={(e) => updateField("github_url", e.target.value)}
                 />
               </div>
-
-              <div>
-                <p className="text-sm dark:text-gray-300">LinkedIn Url</p>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">LinkedIn URL</label>
                 <Input
                   value={profile.linkedin_url ?? ""}
                   onChange={(e) => updateField("linkedin_url", e.target.value)}
                 />
               </div>
             </div>
-
-            <div>
-              <p className="text-sm dark:text-gray-300">Über mich</p>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Über mich</label>
               <Textarea
                 value={profile.about ?? ""}
                 onChange={(e) => updateField("about", e.target.value)}
               />
             </div>
-
-            <div className="flex justify-end gap-3 pt-4">
+            <div className="flex justify-end pt-4">
               <Button
-                className="bg-success hover:bg-success-hover cursor-pointer text-white"
+                className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
                 onClick={saveProfile}
                 disabled={saving}
               >
-                Speichern
+                {saving ? "Speichern..." : "Speichern"}
               </Button>
             </div>
           </div>

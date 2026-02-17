@@ -10,9 +10,10 @@ interface ProjectsSearchProps {
   role: "user" | "manager";
   basePath: "/user/projekts" | "/manager/projekts";
   status: ProjectStatus;
+  showStatusAction: boolean;
 }
 
-function ProjectsSearch({ role, basePath, status }: ProjectsSearchProps) {
+function ProjectsSearch({ role, basePath, status, showStatusAction }: ProjectsSearchProps) {
   const [projects, setProjects] = useState<ProjectsRow[]>([]);
   const [search, setSearch] = useState("");
 
@@ -52,7 +53,6 @@ function ProjectsSearch({ role, basePath, status }: ProjectsSearchProps) {
       const { data, error } = await query;
       if (error) {
         toast.error("Fehler beim Laden der Projekte.");
-        console.log(error);
         return;
       }
 
@@ -83,7 +83,7 @@ function ProjectsSearch({ role, basePath, status }: ProjectsSearchProps) {
               <Link
                 key={project.id}
                 to={`${basePath}/${project.id}`}
-                
+                state={{ showStatusAction: showStatusAction }}
                 className="rounded-lg border bg-white p-3 font-semibold hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
               >
                 {project.project_name}

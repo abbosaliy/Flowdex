@@ -54,8 +54,6 @@ function UseProjects({ role }: UseRole, ststus: ProjectStatus) {
       }
 
       setProjects(data);
-      console.log(data);
-
       setLoading(false);
     }
 
