@@ -61,7 +61,6 @@ export function useProfileSettings() {
       .eq("id", profile.id);
 
     setSaving(false);
-    navigate("/user/profile");
 
     if (error) {
       toast.error("Aktualisierung fehlgeschlagen");
@@ -69,6 +68,11 @@ export function useProfileSettings() {
     }
 
     toast.success("Profil erfolgreich aktualisiert");
+    if (profile.position === "manager") {
+      navigate("/manager/profile");
+    } else {
+      navigate("/user/profile");
+    }
   }
 
   return {

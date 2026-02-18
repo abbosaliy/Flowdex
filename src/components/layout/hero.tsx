@@ -3,7 +3,7 @@ function Hero() {
     <section className="bg-white py-24 dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 text-center">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
-          So funktioniert <span className="text-blue-600 dark:text-blue-400">Flowdex</span>
+          So funktioniert <span className="text-blue-500 dark:text-blue-400">Flowdex</span>
         </h2>
 
         <p className="mt-4 text-gray-600 dark:text-gray-400">Ein klar strukturierter Workflow für moderne Projektzusammenarbeit</p>

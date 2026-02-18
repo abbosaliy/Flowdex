@@ -1,22 +1,18 @@
 import { useState } from "react";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FiChevronDown, FiLogOut, FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import useDropdown from "../../hooks/useDropdown";
+import LogoutDialog from "./logout-dialog";
 interface ProfileDropdownProps {
   basePath: "/user" | "/manager";
 }
 
 function ProfileDropdown({ basePath }: ProfileDropdownProps) {
   const [open, setOpen] = useState(false);
-  const { profile, logout } = useDropdown();
-  const navigate = useNavigate();
+  const { profile } = useDropdown();
 
-  async function handleLogout() {
-    await logout();
-    navigate("/");
-  }
   return (
     <div className="relative">
       <button
@@ -50,13 +46,12 @@ function ProfileDropdown({ basePath }: ProfileDropdownProps) {
               Einstellungen
             </NavLink>
             <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
-            <button
-              onClick={handleLogout}
-              className="flex w-full items-center gap-3 px-4 py-2 text-sm text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
-            >
-              <FiLogOut className="h-4 w-4" />
-              Ausloggen
-            </button>
+            <LogoutDialog>
+              <button className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+                <FiLogOut className="h-4 w-4" />
+                Ausloggen
+              </button>
+            </LogoutDialog>
           </div>
         </div>
       )}

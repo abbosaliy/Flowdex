@@ -24,7 +24,7 @@ function AuthGuard({ role }: AuthDuardProps) {
 
       if (!role) {
         setAllowed(true);
-        setLoading(true);
+        setLoading(false);
         return;
       }
 
