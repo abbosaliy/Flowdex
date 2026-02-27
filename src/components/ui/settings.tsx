@@ -31,7 +31,6 @@ function Settings() {
       <h2 className="mb-8 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Einstellungen</h2>
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        {/* Section Header */}
         <div className="px-8 py-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Persönliche Informationen</h3>
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Aktualisieren Sie Ihre persönlichen Daten und Links.</p>
@@ -93,11 +92,11 @@ function Settings() {
             </div>
             <div className="flex justify-end pt-4">
               <Button
-                className="bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                className="cursor-pointer bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
                 onClick={saveProfile}
                 disabled={saving}
               >
-                {saving ? "Speichern..." : "Speichern"}
+                Speichern
               </Button>
             </div>
           </div>

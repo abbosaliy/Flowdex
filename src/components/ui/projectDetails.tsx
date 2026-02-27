@@ -76,7 +76,6 @@ function ProjectsDetails() {
 
   return (
     <div className="px-4 py-10 md:px-8 lg:px-12">
-      {/* Back Link */}
       <Link
         to={backPath}
         className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
@@ -84,7 +83,6 @@ function ProjectsDetails() {
         <GoArrowLeft size={18} />
         Zurück zu Projekten
       </Link>
-
       <Card className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         {!isManager && (
           <div className="flex justify-end">
@@ -97,10 +95,7 @@ function ProjectsDetails() {
           </div>
         )}
 
-        {/* Project Title */}
         <h2 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-white">{project?.project_name}</h2>
-
-        {/* Details */}
         <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-12">
           <div>
             <p className="text-xs tracking-wide text-gray-400 uppercase dark:text-gray-500">Beschreibung</p>
@@ -118,7 +113,6 @@ function ProjectsDetails() {
           </div>
         </div>
 
-        {/* Status Actions */}
         {isManager && showStatusAction && (
           <div className="mt-10 flex flex-wrap gap-4">
             <Button

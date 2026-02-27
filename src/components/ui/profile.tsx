@@ -38,10 +38,17 @@ function Profile() {
 
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="relative h-64 w-full">
-          <img
-            src={cover || `${import.meta.env.BASE_URL}images/software.jpg`}
-            className="h-full w-full object-cover"
-          />
+          {cover ? (
+            <img
+              src={cover}
+              alt="cover"
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-700">
+              <p className="text-center text-gray-500 dark:text-gray-400">Kein Bild vorhanden</p>
+            </div>
+          )}
 
           <label className="absolute right-4 bottom-4 cursor-pointer rounded-full bg-white/80 p-2 shadow-md transition hover:bg-white dark:bg-gray-700 dark:hover:bg-gray-600">
             <FiCamera className="h-4 w-4 text-gray-700 dark:text-gray-200" />
@@ -77,7 +84,7 @@ function Profile() {
             {profile.first_name} {profile.last_name}
           </h3>
 
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{profile.position}</p>
+          <p className="mt-1 text-sm text-gray-500 capitalize dark:text-gray-400">{profile.position}</p>
         </div>
 
         <div className="border-t border-gray-200 px-6 py-6 text-center dark:border-gray-700">

@@ -108,9 +108,19 @@ function Register() {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Wählen Sie Ihre Position" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="manager">Manager/In</SelectItem>
-                      <SelectItem value="projekinhaber">Projekinhaber/In</SelectItem>
+                    <SelectContent className="bg-white dark:bg-gray-800">
+                      <SelectItem
+                        className="cursor-pointer bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        value="manager"
+                      >
+                        Manager/In
+                      </SelectItem>
+                      <SelectItem
+                        className="cursor-pointer bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        value="projekinhaber"
+                      >
+                        Projekinhaber/In
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -120,7 +130,7 @@ function Register() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="m@example.com"
+                    placeholder="example@gmail.com"
                   />
                 </div>
                 <div className="grid gap-2">

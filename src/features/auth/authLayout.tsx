@@ -73,7 +73,7 @@ function Login() {
                   <label htmlFor="email">Email</label>
                   <Input
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="example@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
