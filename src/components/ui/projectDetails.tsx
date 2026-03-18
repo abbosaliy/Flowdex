@@ -23,19 +23,15 @@ function ProjectsDetails() {
   useEffect(() => {
     if (!projectId) return;
     async function fetchProject() {
-      console.log(projectId);
-
       const { data, error } = await supabase.from("project").select("*").eq("id", Number(projectId)).single();
 
       if (error) {
         toast.error("Projekt konnte nicht geladen werden");
-        console.error(error);
         setLoading(false);
         return;
       }
 
       setProject(data);
-      console.log(data);
 
       setLoading(false);
     }
@@ -54,8 +50,6 @@ function ProjectsDetails() {
 
     if (error) {
       toast.error("Status konnte nicht aktualisiert werden");
-
-      console.error(error);
       return;
     }
     navigate(-1);

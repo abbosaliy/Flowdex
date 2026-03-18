@@ -4,13 +4,21 @@ import { toast } from "sonner";
 import type { Database } from "../types/database.types";
 
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
+type ProfileRow = Database["public"]["Tables"]["profile"]["Row"];
+
+type ProjectWithOwner = ProjectsRow & {
+  owner: ProfileRow | null;
+  manager: ProfileRow | null;
+};
+
 type UseRole = {
   role: "owner" | "manager";
 };
+
 type ProjectStatus = "approved" | "rejected" | "revision" | "all";
 
 function UseProjects({ role }: UseRole, ststus: ProjectStatus) {
-  const [projects, setProjects] = useState<ProjectsRow[]>([]);
+  const [projects, setProjects] = useState<ProjectWithOwner[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +29,11 @@ function UseProjects({ role }: UseRole, ststus: ProjectStatus) {
 
       if (!user) return;
 
-      let query = supabase.from("project").select("*");
+      let query = supabase.from("project").select(`
+        *,
+        owner:profile!project_owner_id_fkey(*),
+        manager:profile!project_manager_id_fkey(*)
+      `);
 
       if (role === "owner") {
         query = query.eq("owner_id", user.id);

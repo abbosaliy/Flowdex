@@ -4,8 +4,17 @@ import supabase from "../lib/supabaseClient";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { Input } from "../components/ui/input";
+
 type ProjectsRow = Database["public"]["Tables"]["project"]["Row"];
+type ProfileRow = Database["public"]["Tables"]["profile"]["Row"];
+
+type ProjectWithOwner = ProjectsRow & {
+  owner: ProfileRow | null;
+  manager: ProfileRow | null;
+};
+
 type ProjectStatus = "approved" | "rejected" | "revision" | "all";
+
 interface ProjectsSearchProps {
   role: "user" | "manager";
   basePath: "/user/projekts" | "/manager/projekts";
@@ -14,7 +23,7 @@ interface ProjectsSearchProps {
 }
 
 function ProjectsSearch({ role, basePath, status, showStatusAction }: ProjectsSearchProps) {
-  const [projects, setProjects] = useState<ProjectsRow[]>([]);
+  const [projects, setProjects] = useState<ProjectWithOwner[]>([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -24,7 +33,11 @@ function ProjectsSearch({ role, basePath, status, showStatusAction }: ProjectsSe
       } = await supabase.auth.getUser();
       if (!user) return;
 
-      let query = supabase.from("project").select("*");
+      let query = supabase.from("project").select(`
+        *,
+        owner:profile!project_owner_id_fkey(*),
+        manager:profile!project_manager_id_fkey(*)
+      `);
 
       if (role === "user") {
         query = query.eq("owner_id", user.id);
