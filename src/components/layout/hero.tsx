@@ -1,6 +1,13 @@
+import { motion } from "framer-motion";
+
 function Hero() {
   return (
-    <section className="bg-white py-24 dark:bg-gray-900">
+    <motion.section
+      initial={{ opacity: 0 ,y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white py-24 dark:bg-gray-900"
+    >
       <div className="mx-auto max-w-7xl px-6 text-center">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
           So funktioniert <span className="text-blue-500 dark:text-blue-400">Flowdex</span>
@@ -44,7 +51,7 @@ function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

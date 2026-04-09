@@ -1,10 +1,16 @@
+import { motion } from "framer-motion";
 import { FaHtml5, FaReact } from "react-icons/fa";
 import { SiTypescript, SiTailwindcss, SiSupabase, SiVite } from "react-icons/si";
 
 function About() {
   return (
     <section className="min-h-screen bg-white py-24 dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 40, delay: 0.3, duration: 0.6 }}
+        className="mx-auto max-w-7xl px-6"
+      >
         <div className="text-center">
           <span className="mb-6 inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
             Projektübersicht
@@ -87,7 +93,7 @@ function About() {
             gestalten.
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

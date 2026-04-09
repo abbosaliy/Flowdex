@@ -1,11 +1,17 @@
 import { NavLink } from "react-router";
 import ThemaToggle from "../../Toggle/themeToggle";
 import MobileNavi from "./mobileNavi";
+import { motion } from "framer-motion";
 
 function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (open: boolean) => void }) {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/80">
-      <div className="mx-auto max-w-7xl px-6">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 40, duration: 0.5 }}
+        className="mx-auto max-w-7xl px-6"
+      >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
             <img
@@ -70,7 +76,7 @@ function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen:
             />
           </div>
         </div>
-      </div>
+      </motion.div>
     </header>
   );
 }
