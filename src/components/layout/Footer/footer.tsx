@@ -1,10 +1,16 @@
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { NavLink } from "react-router";
 
 function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 py-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 40, delay: 0.3, duration: 0.3 }}
+        className="mx-auto max-w-7xl px-6 py-10"
+      >
         <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
@@ -90,7 +96,7 @@ function Footer() {
             <p>© 2026 Flowdex. Alle Rechte vorbehalten.</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

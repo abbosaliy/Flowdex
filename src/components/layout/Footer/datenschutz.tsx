@@ -1,7 +1,14 @@
+import { motion } from "framer-motion";
+
 function Datenschutz() {
   return (
     <section className="bg-white py-24 dark:bg-gray-900">
-      <div className="mx-auto max-w-4xl px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 40, delay: 0.3, duration: 0.3 }}
+        className="mx-auto max-w-4xl px-6"
+      >
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Datenschutzerklärung</h1>
 
         <div className="mt-8 space-y-6 text-gray-600 dark:text-gray-400">
@@ -22,7 +29,7 @@ function Datenschutz() {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Ihre Rechte</h2>
           <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer gespeicherten Daten.</p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
