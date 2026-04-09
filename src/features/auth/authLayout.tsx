@@ -7,6 +7,7 @@ import Register from "./register";
 import supabase from "../../lib/supabaseClient";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -50,7 +51,12 @@ function Login() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-white dark:bg-gray-900">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 40, delay: 0.3, duration: 0.3 }}
+      className="flex h-screen items-center justify-center bg-white dark:bg-gray-900"
+    >
       {!open ? (
         <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
@@ -114,7 +120,7 @@ function Login() {
       ) : (
         <Register></Register>
       )}
-    </div>
+    </motion.div>
   );
 }
 export default Login;

@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { useNavigate } from "react-router";
 import supabase from "../../lib/supabaseClient";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 function Register() {
   const [first_name, setFirstName] = useState("");
@@ -63,7 +64,12 @@ function Register() {
     }
   }
   return (
-    <div className="flex h-screen items-center justify-center bg-white px-4 py-4 dark:bg-gray-900">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 40, delay: 0.3, duration: 0.3 }}
+      className="flex h-screen items-center justify-center bg-white px-4 py-4 dark:bg-gray-900"
+    >
       {!open ? (
         <Card className="w-100 dark:bg-gray-800">
           <CardHeader>
@@ -166,7 +172,7 @@ function Register() {
       ) : (
         <Login></Login>
       )}
-    </div>
+    </motion.div>
   );
 }
 export default Register;
